@@ -129,32 +129,36 @@
 	   No "only screen" here so LESS merges cleanly with the outer media query. */
 	@media (max-width: 63.9375rem) {
 		.cs-blobs { font-size: 0.72rem; } /* tablet ≈ 72% */
-		/* smaller dilate radius to match the smaller blobs → less square-off */
-		.cs-blob { filter: url(#cs-spread-md); }
+		/* smaller dilate radius to match the smaller blobs → less square-off;
+		   bump opacity since the lighter dilate makes them read fainter */
+		.cs-blob { filter: url(#cs-spread-md); opacity: 0.72; }
 	}
 	@media (max-width: 47.9375rem) {
 		.cs-blobs { font-size: 0.5rem; }  /* phone ≈ 50% */
-		.cs-blob { filter: url(#cs-spread-sm); }
+		.cs-blob { filter: url(#cs-spread-sm); opacity: 0.85; }
 	}
 
 	/* Three morph flavors — slow rotate + non-uniform scale = lazy squash/stretch.
 	   Pure transform, so the browser composites it on the GPU (no repaint). */
+	/* translate in `em` so the movement scales with the blobs' font-size (which we
+	   shrink on mobile) — smaller blobs drift proportionally less. rotate/scale are
+	   ratios, so they're already size-independent. */
 	@keyframes cs-morph-a {
-		0%, 100% { transform: translate(0, 0)          rotate(0deg)   scale(1, 1); }
-		25%      { transform: translate(2rem, -1.5rem) rotate(14deg)  scale(1.18, 0.85); }
-		50%      { transform: translate(-1.5rem, 2rem) rotate(-12deg) scale(0.86, 1.16); }
-		75%      { transform: translate(1.5rem, 1rem)  rotate(9deg)   scale(1.1, 0.92); }
+		0%, 100% { transform: translate(0, 0)        rotate(0deg)   scale(1, 1); }
+		25%      { transform: translate(2em, -1.5em) rotate(14deg)  scale(1.18, 0.85); }
+		50%      { transform: translate(-1.5em, 2em) rotate(-12deg) scale(0.86, 1.16); }
+		75%      { transform: translate(1.5em, 1em)  rotate(9deg)   scale(1.1, 0.92); }
 	}
 	@keyframes cs-morph-b {
-		0%, 100% { transform: translate(0, 0)          rotate(0deg)   scale(1, 1); }
-		33%      { transform: translate(-2.5rem, 1rem) rotate(-16deg) scale(1.2, 0.82); }
-		66%      { transform: translate(2.5rem, -2rem) rotate(12deg)  scale(0.84, 1.18); }
+		0%, 100% { transform: translate(0, 0)        rotate(0deg)   scale(1, 1); }
+		33%      { transform: translate(-2.5em, 1em) rotate(-16deg) scale(1.2, 0.82); }
+		66%      { transform: translate(2.5em, -2em) rotate(12deg)  scale(0.84, 1.18); }
 	}
 	@keyframes cs-morph-c {
-		0%, 100% { transform: translate(0, 0)           rotate(0deg)   scale(1, 1); }
-		30%      { transform: translate(1.5rem, 2rem)   rotate(11deg)  scale(0.86, 1.16); }
-		60%      { transform: translate(-2rem, -1.5rem) rotate(-13deg) scale(1.16, 0.88); }
-		85%      { transform: translate(1rem, -1rem)    rotate(7deg)   scale(1.06, 0.95); }
+		0%, 100% { transform: translate(0, 0)         rotate(0deg)   scale(1, 1); }
+		30%      { transform: translate(1.5em, 2em)   rotate(11deg)  scale(0.86, 1.16); }
+		60%      { transform: translate(-2em, -1.5em) rotate(-13deg) scale(1.16, 0.88); }
+		85%      { transform: translate(1em, -1em)    rotate(7deg)   scale(1.06, 0.95); }
 	}
 
 	/* Hold still for users who prefer reduced motion */
@@ -193,6 +197,10 @@
 		margin: 0 0 1rem 0;
 		color: var(--headerColor);
 		position: relative;
+		/* keep natural top-down wrapping (last line stays the short one) but let the
+		   browser tidy the final lines so a word isn't stranded. (balance would even
+		   ALL lines and lengthen the last one, which we don't want here.) */
+		text-wrap: pretty;
 	}
 
 	.cs-text {
