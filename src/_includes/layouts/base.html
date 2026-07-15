@@ -37,6 +37,7 @@
         <link rel="stylesheet" href="/assets/css/root.css">
         <script defer src="/assets/js/dark.js"></script>
         <script defer src="/assets/js/nav.js"></script>
+        <script defer src="/assets/js/smooth-scroll.js"></script>
 
         {% block head %}{% endblock %}
 
@@ -48,6 +49,29 @@
 
         {% include "sections/header.html" %}
         <main id="main">
+            <!-- Decorative abstract color blobs behind all content -->
+            <div class="cs-blobs" aria-hidden="true">
+                <!-- Spread filter: feMorphology/dilate grows the colored area outward
+                     (no blur), then a hair of blur just knocks the hard edge off. -->
+                <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+                    <filter id="cs-spread" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+                        <feMorphology operator="dilate" radius="12" result="spread"/>
+                        <feGaussianBlur in="spread" stdDeviation="10.5"/>
+                    </filter>
+                </svg>
+                <svg class="cs-blob cs-blob-1" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M28,-58C40,-50,68,-52,74,-33C80,-14,53,-6,55,9C57,24,80,33,71,50C62,67,33,53,17,61C1,69,-3,90,-22,83C-41,76,-29,50,-42,40C-55,30,-80,35,-79,15C-78,-5,-52,-6,-52,-23C-52,-40,-71,-57,-55,-68C-39,-79,-19,-57,-1,-60C11,-62,16,-66,28,-58Z"/></svg>
+                <svg class="cs-blob cs-blob-2" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M22,-55C30,-44,55,-48,66,-32C77,-16,73,9,76,28C79,47,92,60,78,68C64,76,40,58,24,64C8,70,0,92,-19,87C-38,82,-30,55,-44,46C-58,37,-84,44,-82,22C-80,0,-52,-4,-52,-22C-52,-40,-74,-58,-58,-68C-42,-78,-22,-54,-3,-58C9,-60,14,-66,22,-55Z"/></svg>
+                <svg class="cs-blob cs-blob-3" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M33,-60C44,-49,55,-38,65,-23C75,-8,84,11,79,26C74,41,55,52,38,62C21,72,5,81,-13,80C-31,79,-51,68,-58,51C-65,34,-59,11,-60,-9C-61,-29,-69,-47,-62,-62C-55,-77,-33,-89,-15,-84C3,-79,22,-71,33,-60Z"/></svg>
+                <svg class="cs-blob cs-blob-4" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M26,-52C33,-40,37,-30,49,-19C61,-8,81,4,82,17C83,30,65,44,49,57C33,70,17,82,-2,85C-21,88,-42,82,-50,67C-58,52,-53,28,-56,7C-59,-14,-70,-33,-64,-48C-58,-63,-35,-74,-15,-71C5,-68,19,-64,26,-52Z"/></svg>
+                <svg class="cs-blob cs-blob-5" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M30,-54C37,-43,40,-33,52,-22C64,-11,85,1,86,14C87,27,68,41,53,54C38,67,27,79,10,82C-7,85,-26,79,-43,68C-60,57,-75,41,-77,24C-79,7,-68,-12,-59,-31C-50,-50,-43,-69,-28,-74C-13,-79,10,-70,30,-54Z"/></svg>
+                <svg class="cs-blob cs-blob-6" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M24,-50C29,-39,30,-28,41,-17C52,-6,73,5,76,18C79,31,64,46,49,58C34,70,17,79,-2,82C-21,85,-42,82,-52,68C-62,54,-61,29,-60,8C-59,-13,-58,-30,-49,-44C-40,-58,-23,-69,-6,-66C11,-63,19,-61,24,-50Z"/></svg>
+                <svg class="cs-blob cs-blob-7" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M33,-60C44,-49,55,-38,65,-23C75,-8,84,11,79,26C74,41,55,52,38,62C21,72,5,81,-13,80C-31,79,-51,68,-58,51C-65,34,-59,11,-60,-9C-61,-29,-69,-47,-62,-62C-55,-77,-33,-89,-15,-84C3,-79,22,-71,33,-60Z"/></svg>
+                <svg class="cs-blob cs-blob-8" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M30,-54C37,-43,40,-33,52,-22C64,-11,85,1,86,14C87,27,68,41,53,54C38,67,27,79,10,82C-7,85,-26,79,-43,68C-60,57,-75,41,-77,24C-79,7,-68,-12,-59,-31C-50,-50,-43,-69,-28,-74C-13,-79,10,-70,30,-54Z"/></svg>
+                <svg class="cs-blob cs-blob-9" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M28,-58C40,-50,68,-52,74,-33C80,-14,53,-6,55,9C57,24,80,33,71,50C62,67,33,53,17,61C1,69,-3,90,-22,83C-41,76,-29,50,-42,40C-55,30,-80,35,-79,15C-78,-5,-52,-6,-52,-23C-52,-40,-71,-57,-55,-68C-39,-79,-19,-57,-1,-60C11,-62,16,-66,28,-58Z"/></svg>
+                <svg class="cs-blob cs-blob-10" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M24,-50C29,-39,30,-28,41,-17C52,-6,73,5,76,18C79,31,64,46,49,58C34,70,17,79,-2,82C-21,85,-42,82,-52,68C-62,54,-61,29,-60,8C-59,-13,-58,-30,-49,-44C-40,-58,-23,-69,-6,-66C11,-63,19,-61,24,-50Z"/></svg>
+                <svg class="cs-blob cs-blob-11" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M22,-55C30,-44,55,-48,66,-32C77,-16,73,9,76,28C79,47,92,60,78,68C64,76,40,58,24,64C8,70,0,92,-19,87C-38,82,-30,55,-44,46C-58,37,-84,44,-82,22C-80,0,-52,-4,-52,-22C-52,-40,-74,-58,-58,-68C-42,-78,-22,-54,-3,-58C9,-60,14,-66,22,-55Z"/></svg>
+                <svg class="cs-blob cs-blob-12" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M26,-52C33,-40,37,-30,49,-19C61,-8,81,4,82,17C83,30,65,44,49,57C33,70,17,82,-2,85C-21,88,-42,82,-50,67C-58,52,-53,28,-56,7C-59,-14,-70,-33,-64,-48C-58,-63,-35,-74,-15,-71C5,-68,19,-64,26,-52Z"/></svg>
+            </div>
             {% block body %}{% endblock %}
         </main>
         {% include "sections/footer.html" %}

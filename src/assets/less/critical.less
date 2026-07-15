@@ -5,45 +5,357 @@
 // The rest of the home page styles in local.css will be deferred and
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Demo styles - Delete me!
-#welcome {
-    padding: 100px 16px;
+/*-- -------------------------- -->
+<---           Hero             -->
+<--- -------------------------- -*/
 
-    .cs-container {
-        max-width: 1280px;
-        margin: 0 auto;
-    }
-
-    .cs-content {
-        max-width: 800px;
-        margin: 0 auto;
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #hero-493 {
+        /* Centers button */
         text-align: center;
-    }
+        /* 200px - 300px - leaving extra space for the navigation */
+        padding: clamp(3rem, 25.95vw, 3rem) (16/16rem);
+        padding-bottom: (80/16rem);
+        /* prevents the topper line from causing an overflow */
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        
 
-    h1 {
-        margin-bottom: 24px;
-        font-size: clamp(2rem, 5vw, 3rem);
-    }
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            
 
-    p {
-        margin-bottom: 16px;
-        font-size: 1.125rem;
-        line-height: 1.6;
-    }
+            &:before {
+                /* Overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: var(--primary);
+                /* light wash so the blob layer behind the hero stays visible */
+                opacity: 0.15;
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                /* prevents the cursor from interacting with it */
+                pointer-events: none;
+            }
 
-    code {
-        padding: 2px 8px;
-        background: #f4f4f4;
-        border-radius: 4px;
-        font-family: monospace;
-    }
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                /* faint paper texture so the blobs read through */
+                opacity: 0.25;
+            }
+        }
 
-    a {
-        color: var(--primary);
-        text-decoration: underline;
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            /* changes at tablet */
+            gap: (48/16rem);
+        }
 
-        &:hover {
-            opacity: 0.8;
+        .cs-content {
+            width: 100%;
+            max-width: (630/16rem);
+            /* anchor for the floating handwritten notes */
+            position: relative;
+        }
+
+        .cs-note {
+            /* Each note's width equals its own viewBox width (set below), so the SVG
+               renders at 1:1 — which makes the text font-size a literal pixel size.
+               28px matches the "keep reading" label. Want bigger? Just change 28px. */
+            height: auto;
+            overflow: visible;
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+
+            text {
+                /* at 1:1 scale this px value IS the rendered size; clamp = same
+                   fluid curve as "keep reading" so they scale together (20 → 28px) */
+                font-size: clamp(1rem, 2.5vw, 1.3rem);
+                font-family: 'Caveat', cursive;
+            }
+        }
+
+        .cs-note-left {
+            /* = its viewBox width (200) → 1:1 scale, so the text is a true 28px */
+            width: 200px;
+            /* % top tracks the content height across viewports */
+            top: 6%;
+            left: clamp(-0.5rem, -3vw, 0.5rem);
+            /* resting tilt (also used when motion is reduced) */
+            transform: rotate(-8deg);
+
+            text {
+                fill: var(--handWrittenInk);
+            }
+            /* gentle sway around its tilt */
+            animation: cs-sway-left 6s ease-in-out infinite;
+        }
+
+        .cs-note-right {
+            /* = its viewBox width (220) → 1:1 scale */
+            width: 220px;
+            top: 38%;
+            right: clamp(-10rem, -5vw, -7.5rem);
+            /* resting tilt (also used when motion is reduced) */
+            transform: rotate(6deg);
+
+            text {
+                fill: var(--accentColorDeepRose);
+            }
+            /* slow float + drift, offset timing so it's out of sync with the left note */
+            animation: cs-float-right 4s ease-in-out infinite;
+        }
+
+        .cs-topper {
+            /* 16px - 20px */
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            line-height: 1.2em;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: (16/16rem);
+            color: var(--headerColor);
+            display: inline-block;
+            position: relative;
+            font-family: 'Quicksand', serif;
+
+            &:before {
+                /* left yellow line */
+                content: "";
+                /* 24px (phones) - 100px, scales with viewport */
+                width: clamp(1.5rem, 8vw, 6.25rem);
+                height: 1.5px;
+                margin-right: clamp(0.75rem, 3vw, 1.75rem);
+                background: var(--accentColorDeepRose);
+                opacity: 1;
+                position: absolute;
+                display: block;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 100%;
+            }
+
+            &:after {
+                /* right yellow line */
+                content: "";
+                /* 24px (phones) - 100px, scales with viewport */
+                width: clamp(1.5rem, 8vw, 6.25rem);
+                height: 1.5px;
+                margin-left: clamp(0.75rem, 3vw, 1.75rem);
+                background: var(--accentColorDeepRose);
+                opacity: 1;
+                position: absolute;
+                display: block;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 100%;
+            }
+        }
+
+        .cs-title {
+            /* 39px - 100px */
+            font-size: clamp(2.4375rem, 7.8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-align: center;
+            max-width: (829/16rem);
+            /* 16px - 24px */
+            margin: 0 auto clamp(1rem, 4vw, 1.5rem) 0;
+            color: var(--headerColor);
+            position: relative;
+            font-family: 'Libre Caslon Text', serif;
+        }
+
+        .cs-title .title-accent {
+            color: var(--accentColorDeepRose);
+            font-style: italic;
+            text-decoration: underline;
+            /* scale with the title so it isn't too thick / too low on small screens */
+            text-decoration-thickness: clamp(2px, 0.5vw, 5px);
+            text-underline-offset: clamp(4px, 0.9vw, 10px);
+        }
+
+        .cs-text {
+            /* 16px - 35px */
+            font-size: clamp(1rem, 2.73vw, 1.75rem);
+            line-height: 1.5em;
+            text-align: center;
+            width: 100%;
+            /* 464px - 622px */
+            max-width: clamp(29rem, 60vw, 38.785rem);
+            margin: 0 auto 0;
+            margin-bottom: (36/16rem);
+            color: var(--headerColor);
+            font-family: 'Libre Caslon Text', serif;
+            font-style:italic;
+            font-weight: 400;
+        }
+
+        .cs-button-solid {
+            font-family: 'Caveat', Arial, sans-serif;
+            /* 20px (mobile) - 28px (desktop); matches the floating note text */
+            font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+            /* 46px - 56px */
+            line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+            text-decoration: none;
+            //font-weight: 700;
+            text-align: center;
+            margin: 0;
+            color: var(--handWrittenInk);
+            min-width: (150/16rem);
+            padding: 0 (24/16rem);
+            border-radius: (4/16rem);
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            /* prevents padding from adding to the width */
+            box-sizing: border-box;
+
+            /*
+            &:before {
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 0%;
+                background: #000;
+                opacity: 1;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                border-radius: (4/16rem);
+                transition: width 0.3s;
+            }
+                
+
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
+            }
+                */
+        }
+
+        .cs-scroll-arrow {
+            /* 22px - 28px */
+            width: clamp(1.375rem, 2.5vw, 1.75rem);
+            height: auto;
+            display: block;
+            margin: (4/16rem) auto 0;
+            color: var(--handWrittenInk);
+            /* gentle nudge to invite scrolling */
+            animation: cs-bounce 2s ease-in-out infinite;
         }
     }
 }
+
+@keyframes cs-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(0.375rem); }
+}
+
+/* Left note: sways around its -8deg tilt while bobbing slightly.
+   Note the base rotate() is baked into every keyframe so it isn't lost. */
+@keyframes cs-sway-left {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50%      { transform: rotate(-4deg) translateY(-0.25rem); }
+}
+
+/* Right note: slow vertical float with a little drift and rotation wobble. */
+@keyframes cs-float-right {
+    0%, 100% { transform: rotate(6deg) translate(0, 0); }
+    50%      { transform: rotate(9deg) translate(0.25rem, 0.375rem); }
+}
+
+/* ── Extra flavors you can swap in on either note ────────────────────────── */
+   //Remember: bake the note's base rotate() into 0%/100% so the tilt holds.
+
+@keyframes cs-wobble {                          // playful side-to-side tilt
+    0%, 100% { transform: rotate(-8deg); }
+    25%      { transform: rotate(-11deg); }
+    75%      { transform: rotate(-5deg); }
+}
+@keyframes cs-pulse {                           // breathing scale
+    0%, 100% { transform: rotate(-8deg) scale(1); }
+    50%      { transform: rotate(-8deg) scale(1.06); }
+}
+@keyframes cs-drift {                           // lazy figure-eight-ish drift
+    0%, 100% { transform: rotate(6deg) translate(0, 0); }
+    33%      { transform: rotate(8deg) translate(0.25rem, -0.25rem); }
+    66%      { transform: rotate(4deg) translate(-0.25rem, 0.25rem); }
+}
+/* -------------------------------------------------------------------------- */
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+    #hero-493 .cs-scroll-arrow,
+    #hero-493 .cs-note-left,
+    #hero-493 .cs-note-right {
+        animation: none;
+    }
+}
+
+/* Tablet - 768px: bigger text + positions with the bit of margin there is.
+   ── size knob: .cs-note text font-size · position knobs: top / left / right ── */
+@media only screen and (min-width: 48rem) {
+    #hero-493 {
+        .cs-note text {
+            font-size: 1.7rem; /* ~24px */
+        }
+
+        .cs-note-left {
+            top: 8%;
+            left: -2rem;
+        }
+
+        .cs-note-right {
+            top: 42%;
+            right: -3rem;
+        }
+    }
+}
+
+/* Desktop - 1024px: full-size notes floating out in the wide title margins.
+   ── size knob: .cs-note text font-size · position knobs: top / left / right ── */
+@media only screen and (min-width: 64rem) {
+    #hero-493 {
+        .cs-note text {
+            font-size: 1.75rem; /* 28px */
+        }
+
+        .cs-note-left {
+            top: (50/16rem);
+            left: (-100/16rem);
+        }
+
+        .cs-note-right {
+            top: (350/16rem);
+            right: (-150/16rem);
+        }
+    }
+}
+          

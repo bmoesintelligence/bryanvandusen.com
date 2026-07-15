@@ -1,6 +1,6 @@
 ---
-title: "Welcome"
-description: "Your new website"
+title: "Bryan Vandusen"
+description: "Bryan Vandusen is a writer, author, and content creator. He is passionate about helping others through his writing and sharing his knowledge and experiences with the world."
 permalink: "/"
 tags: "sitemap" # content/content.json will make sure that all pages in content/ are marked with a "sitemap" tag, for automatic sitemap generation. As index.html is not in content/, we need to add it here to ensure the root page is included in the sitemap generation
 ---
@@ -28,21 +28,228 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
 {% endblock %}
 
 {% block body %}
-    <section id="welcome">
+    <!-- ============================================ -->
+    <!--                    Hero                      -->
+    <!-- ============================================ -->
+
+    <section id="hero-493">
         <div class="cs-container">
             <div class="cs-content">
-                <h1>Welcome to Your New Website</h1>
-                <p>
-                    This template has been stripped to its bare minimum. All demo content
-                    has been moved to <code>scripts/deleted/</code> and can be safely deleted
-                    once you no longer need it.
+                <svg class="cs-note cs-note-left" viewBox="0 0 200 70" aria-hidden="true">
+                    <path id="arc-left" d="M5,50 Q100,5 195,35" fill="none"/>
+                    <text><textPath href="#arc-left" startOffset="0">hello, hello!</textPath></text>
+                </svg>
+                <span class="cs-topper">CHILDREN'S AUTHOR</span>
+                <h1 class="cs-title">Stories for<br><span class="title-accent">brave</span> little<br>humans.</h1>
+                <svg class="cs-note cs-note-right" viewBox="0 0 220 70" aria-hidden="true">
+                    <path id="arc-right" d="M5,15 Q100,5 215,40" fill="none"/>
+                    <text><textPath href="#arc-right" startOffset="0">&amp; their grown-ups</textPath></text>
+                </svg>
+                <p class="cs-text">
+                    Picture books about self-expression,<br> belonging, and the magic of being <br>exactly who you are.
                 </p>
-                <p>
-                    Get started by reading the
-                    Quick Start Guide
-                    section in the README.
-                </p>
+                <a href="#sbs-677" class="cs-button-solid">keep reading</a>
+                <svg class="cs-scroll-arrow" viewBox="0 0 28 40" fill="none" aria-hidden="true">
+                    <path d="M10 3 Q17 12 11 33" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M5.5 27 L11.5 34.5 L18 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
         </div>
+
+        <!-- Background Image -->
+        <picture class="cs-background">
+            <source media="(max-width: 600px)" srcset="/assets/images/book_texture.jpg">
+            <source media="(min-width: 601px)" srcset="/assets/images/book_texture.jpg">
+            <img loading="lazy" decoding="async" src="/assets/images/book_texture.jpg" alt="book texture" width="1920" height="1200" aria-hidden="true">
+        </picture>
     </section>
+
+
+    <!-- ============================================ -->
+    <!--                Side By Side                  -->
+    <!-- ============================================ -->
+
+    <section id="sbs-677">
+        <div class="cs-container">
+            <div class="cs-image-group">
+                <!--Main Image-->
+                <picture class="cs-picture">
+                    <!--Mobile Image-->
+                    <source media="(max-width: 600px)" srcset="/assets/images/bryan_vandusen_cropped.jpg">
+                    <!--Tablet and above Image-->
+                    <source media="(min-width: 601px)" srcset="/assets/images/bryan_vandusen_cropped.jpg">
+                    <img loading="lazy" decoding="async" src="/assets/images/bryan_vandusen_cropped.jpg" alt="landscape" width="562" height="568">
+                </picture>
+                <!--Pink Blob
+                <img class="cs-graphic1" loading="lazy" decoding="async" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images%2FGraphics%2Fpink-blob.svg" alt="pink graphic" width="441" height="478">-->
+                <!--Flower Graphic
+                <img class="cs-graphic2" loading="lazy" decoding="async" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images%2FGraphics%2Fabstract-flower.svg" alt="abstract flower" width="267" height="130">-->
+            </div>
+            <div class="cs-content">
+                <span class="cs-topper">~ about the author ~</span>
+                <h2 class="cs-title">A storyteller raised among <span class="cs-circled">forests, animals, <svg class="cs-circle-scribble" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true"><path d="M306,58 C310,86 240,112 158,110 C74,111 10,86 14,58 C11,30 82,10 162,12 C244,9 304,32 306,58 Z" fill="none" vector-effect="non-scaling-stroke"/></svg></span> and a great deal of imagination.</h2>
+                <p class="cs-text">
+                    Bryan grew up in a corner of the world where the woods did most of the talking — long afternoons under tall trees, conversations with creatures who didn't seem to mind the company, and a slow, steady habit of paying attention.
+                </p>
+                <p class="cs-text">
+                    Now he writes picture books for children who are figuring out who they are, and for the grown-ups who love them. His stories are soft, sturdy places where being different is the whole point, and every reader is invited to feel completely, unmistakably seen.
+                </p>
+                <!--
+                <div class="cs-contact-group">
+                    <a class="cs-link" href="tel:555-555-0234">
+                        <picture class="cs-wrapper">
+                            <img class="cs-icon" loading="lazy" decoding="async" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Icons%2Fphone.svg" alt="icon" width="24" height="24">
+                        </picture>
+                        <div class="cs-info">
+                            <span class="cs-header">Call Now</span>
+                            <span class="cs-link-content">(555) 555-0234</span>
+                        </div>
+                    </a>
+                    <a class="cs-link" href="mailto:Info@health&wellness.com">
+                        <picture class="cs-wrapper">
+                            <img class="cs-icon" loading="lazy" decoding="async" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Icons%2Fmail.svg" alt="icon" width="24" height="24">
+                        </picture>
+                        <div class="cs-info">
+                            <span class="cs-header">Send A Message</span>
+                            <span class="cs-link-content">Info@health&wellness.com</span>
+                        </div>
+                    </a>
+                </div>
+                -->
+                <p class="cs-paragraph" >a book, he hopes, can be a <br>small, kind place to land</p>
+            </div>
+        </div>
+        
+        <!-- Background Image -->
+        <picture class="cs-background">
+            <source media="(max-width: 600px)" srcset="/assets/images/book_texture.jpg">
+            <source media="(min-width: 601px)" srcset="/assets/images/book_texture.jpg">
+            <img loading="lazy" decoding="async" src="/assets/images/book_texture.jpg" alt="book texture" width="1920" height="1200" aria-hidden="true">
+        </picture>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                   Reviews                    -->
+    <!-- ============================================ -->
+
+    <section id="reviews-353">
+        <div class="cs-container">
+            <div class="cs-content">
+                <span class="cs-topper">~ my books ~</span>
+                <h2 class="cs-title">Two stories on the way, <span class="title-accent">both arriving soon.</span></h2>
+                <!--<span class="cs-topper">~ for ages 4 to 8 ~</span>-->
+            </div>
+            <ul class="cs-card-group">
+                <li class="cs-item">
+                    <!-- Book cover placeholder (drop a real cover <img> in here later) -->
+                    <div class="cs-image" aria-hidden="true"></div>
+                    <div class="cs-flex-group">
+                        <span class="cs-name">Sky's Got Glitter</span>
+                        <span class="cs-job">Ages 4&ndash;8 &middot; October 2027</span>
+                        <p class="cs-review">
+                            A heartfelt and joyful picture book about a child learning to embrace self expression, shine confidently, and celebrate exactly who they are.
+                        </p>
+                        <span class="cs-topper2">- a book about being seen, and being shiny</span>
+                    </div>
+                </li>
+                <li class="cs-item">
+                    <!-- Book cover placeholder (drop a real cover <img> in here later) -->
+                    <div class="cs-image" aria-hidden="true"></div>
+                    <div class="cs-flex-group">
+                        <span class="cs-name">The Cardboard Castle</span>
+                        <span class="cs-job">Ages 4&ndash;8 &middot; Date TBA</span>
+                        <p class="cs-review">
+                            An imaginative picture book about a child who turns a cardboard box into grand adventures, and discovers the wonder they were chasing was theirs all along.
+                        </p>
+                        <span class="cs-topper2">- imagination, but make it portable</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                    Hero                      -->
+    <!-- ============================================ -->
+
+    <section id="contact-493">
+        <div class="cs-container">
+            <div class="cs-content">
+                <span class="cs-topper">~ keep in touch ~</span>
+                <h1 class="cs-title">Say hello, <span class="title-accent">or follow along.</span></h1>
+                <p class="cs-text">
+                    News on the books, glimpses from the studio, and the occasional very small chipmunk. I'd love to hear from you — especially from teachers, librarians, and parents. 
+                </p>
+                <a href="" class="cs-button-solid">
+                    <img class="cs-button-icon" src="/assets/images/instagram-white-icon.svg" alt="" aria-hidden="true" width="20" height="20" decoding="async">
+                    FOLLOW ON INSTAGRAM
+                </a>
+                <span class="cs-topper">or write to <span class="title-accent2">hello@bryanvandusen.com</span></span>
+            </div>
+        </div>
+
+        <!-- Background Image -->
+        <picture class="cs-background">
+            <source media="(max-width: 600px)" srcset="/assets/images/book_texture.jpg">
+            <source media="(min-width: 601px)" srcset="/assets/images/book_texture.jpg">
+            <img loading="lazy" decoding="async" src="/assets/images/book_texture.jpg" alt="book texture" width="1920" height="1200" aria-hidden="true">
+        </picture>
+    </section>
+
+
+    <!-- ============================================ -->
+    <!--                       FAQ                    -->
+    <!-- ============================================ -->
+
+    <section id="faq-2490">
+        <div class="cs-container">
+            <div class="cs-content">
+                <span class="cs-topper">~ in good company with ~</span>
+                
+            </div>
+        </div>
+        <div class="cs-wrapper">
+            <ul class="cs-card-group">
+                <li class="cs-item">
+                    <picture class="cs-picture">
+                        <source media="(max-width: 600px)" srcset="/assets/images/publisher_1.png" />
+                        <source media="(min-width: 601px)" srcset="/assets/images/publisher_1.png" />
+                        <img aria-hidden="true" loading="lazy" decoding="async" src="/assets/images/publisher_1.png" alt="real estate" width="320" height="90" />
+                    </picture>
+                    
+                </li>
+                <li class="cs-item">
+                    <picture class="cs-picture">
+                        <source media="(max-width: 600px)" srcset="/assets/images/publisher_2.png" />
+                        <source media="(min-width: 601px)" srcset="/assets/images/publisher_2.png" />
+                        <img aria-hidden="true" loading="lazy" decoding="async" src="/assets/images/publisher_2.png" alt="real estate" width="320" height="90" />
+                    </picture>
+                    
+                </li>
+                <li class="cs-item">
+                    <picture class="cs-picture">
+                        <source media="(max-width: 600px)" srcset="/assets/images/publisher_3_trim.png" />
+                        <source media="(min-width: 601px)" srcset="/assets/images/publisher_3_trim.png" />
+                        <img aria-hidden="true" loading="lazy" decoding="async" src="/assets/images/publisher_3_trim.png" alt="real estate" width="320" height="90" />
+                    </picture>
+                    
+                </li>
+            </ul>
+        </div>
+
+        <!-- Background Image -->
+        <picture class="cs-background">
+            <source media="(max-width: 600px)" srcset="/assets/images/book_texture.jpg">
+            <source media="(min-width: 601px)" srcset="/assets/images/book_texture.jpg">
+            <img loading="lazy" decoding="async" src="/assets/images/book_texture.jpg" alt="book texture" width="1920" height="1200" aria-hidden="true">
+        </picture>
+    </section>
+
+
+    
+
+                                    
+                                    
+                                    
+                    
 {% endblock %}

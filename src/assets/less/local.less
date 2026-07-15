@@ -1,0 +1,1140 @@
+              
+
+/*-- -------------------------- -->
+<---       Side By Side         -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #sbs-677 {
+        /* horizontal padding so the stacked text/image clear the screen edges
+           (like the hero); bottom keeps space before the next section */
+        padding: 0 (16/16rem) 5rem;
+        /* clips anything overflowing */
+        overflow: hidden;
+        position: relative;
+
+        .cs-container {
+            width: 100%;
+            /* changes to 1280px at desktop */
+            max-width: (550/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: left;
+            width: 100%;
+            max-width: (642/16rem);
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: flex-start;
+        }
+
+        .cs-text {
+            margin-bottom: (16/16rem);
+            &:last-of-type {
+                margin-bottom: (32/16rem);
+            }
+        }
+
+        /* Hand-drawn "annotation" circle around emphasized words */
+        .cs-circled {
+            position: relative;
+            /* own stacking context so the oval's z-index:-1 stays behind the text
+               (and only this text), not behind the whole section */
+            isolation: isolate;
+            /* keep the words on one line so the circle can wrap them */
+            white-space: nowrap;
+            //color: var(--accentColorDeepRose);
+            font-style: italic;
+        }
+
+        .cs-circle-scribble {
+            position: absolute;
+            /* An <svg> is a replaced element, so left+right won't stretch it — use
+               explicit width/height. left anchors it; grow WIDTH to stretch right.
+               (100% = the words' width; the extra em's overshoot past them.) */
+            left: -0.75em;
+            width: calc(100% + 1em);
+            top: 50%;
+            height: 1.5em;
+            /* translateY keeps it centered; rotate tilts it — tweak the angle to taste */
+            transform: translateY(-50%) rotate(-2deg);
+            overflow: visible;
+            pointer-events: none;
+            /* sit behind the words (isolation on .cs-circled keeps this local) */
+            z-index: -1;
+            /* stroke stays uniform even though preserveAspectRatio stretches the path */
+            stroke: var(--accentColorRose);
+            stroke-width: 1.5px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .cs-paragraph {
+            font-family: 'Caveat', Arial, sans-serif;
+            font-size: clamp(0.8125rem, 1.6vw, 1.35rem);
+            /* 46px - 56px */
+            //line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+            text-decoration: none;
+            //text-align: center;
+            margin: 0;
+            color: var(--handWrittenInk);
+            min-width: (150/16rem);
+            padding: 0 (16/16rem);
+            //border-radius: (4/16rem);
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            border-left: 2px solid var(--accentColorRose);
+            
+        }
+
+        .cs-contact-group {
+            width: 100%;
+            margin-bottom: (32/16rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: (24/16rem);
+        }
+
+        .cs-link {
+            text-decoration: none;
+            padding-right: (30/16rem);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: (16/16rem);
+            position: relative;
+
+            &:hover {
+                &:before {
+                    width: 100%;
+                    height: (56/16em);
+                    border-radius: (30/16rem);
+                }
+                .cs-wrapper {
+                    transform: scale(1.2);
+                }
+
+                .cs-icon {
+                    transform: translateX(0.4375rem);
+                }
+            }
+
+            &:before {
+                /* light green circle that animates on hover */
+                content: "";
+                width: (48/16rem);
+                height: (48/16rem);
+                background: #eff1f0;
+                border-radius: (24/16rem);
+                opacity: 1;
+                position: absolute;
+                display: block;
+                top: 50%;
+                left: 0;
+                z-index: -1;
+                transform: translateY(-50%);
+                transition:
+                    width 0.3s,
+                    height 0.3s,
+                    border-radius 0.3s;
+            }
+        }
+
+        .cs-wrapper {
+            width: (48/16rem);
+            height: (48/16rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* prevents flexbox from squishing it */
+            flex: none;
+            transition: transform 0.3s;
+        }
+
+        .cs-icon {
+            width: (24/16rem);
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .cs-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: (4/16rem);
+        }
+
+        .cs-header {
+            font-size: (16/16rem);
+            line-height: 1.2em;
+            font-weight: 700;
+            margin: 0;
+            color: var(--headerColor);
+            display: block;
+        }
+
+        .cs-link-content {
+            font-size: (16/16rem);
+            line-height: 1.2em;
+            font-weight: 400;
+            margin: 0;
+            color: var(--bodyTextColor);
+            display: block;
+        }
+
+        .cs-image-group {
+            /* em-scaling master size for mobile/tablet — lower these two numbers to
+               shrink the whole portrait (vw drives phones, the em cap drives tablet).
+               Overridden at the 64rem desktop breakpoint. */
+            font-size: ~"min(1.7vw, .6em)";
+            /* everything inside this box is in ems so we can scale it all down proportionally with a font size */
+            width: (625/16em);
+            height: (842/16em);
+            /* centered while stacked (mobile/tablet); reset to 0 at desktop row layout */
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cs-picture {
+            width: (562/16em);
+            height: (725/16em);
+            border-radius: (285/16em);
+            /* clips the image to match the border radius of the cs-picture */
+            overflow: hidden;
+            display: block;
+            position: absolute;
+            /* center the portrait on mobile/tablet — the box is wider than the
+               portrait to hold the (currently hidden) blob graphics. Desktop
+               restores the right-offset for that layout. */
+            left: 0;
+            right: 0;
+            margin-inline: auto;
+            bottom: (32/16em);
+
+            img {
+                width: 100%;
+                height: 100%;
+                /* makes it act like a background image */
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        .cs-graphic1 {
+            width: (650/16em);
+            height: auto;
+            display: block;
+            position: absolute;
+            left: (-205/16em);
+            top: (-125/16em);
+            z-index: -1;
+        }
+
+        .cs-graphic2 {
+            width: (267/16em);
+            height: auto;
+            display: block;
+            position: absolute;
+            transform: rotate(137deg);
+            right: (-45/16em);
+            bottom: (33/16em);
+            z-index: -1;
+        }
+
+        .cs-floater {
+            display: none;
+        }
+
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            
+
+            &:before {
+                /* Overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: var(--primary);
+                /* light wash so the blob layer behind the hero stays visible */
+                opacity: 0.15;
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                /* prevents the cursor from interacting with it */
+                pointer-events: none;
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                /* faint paper texture so the blobs read through */
+                opacity: 0.25;
+            }
+        }
+    }
+}
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #sbs-677 {
+        .cs-container {
+            max-width: (1280/16rem);
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cs-image-group {
+            /* lower this to shrink the whole image group (everything inside is in em) */
+            font-size: ~"min(0.95vw, 0.8em)";
+            margin: 0;
+        }
+
+        .cs-picture {
+            /* restore the offset placement used with the blob-graphic layout */
+            left: auto;
+            right: (15/16em);
+            margin-inline: 0;
+        }
+
+        .cs-content {
+            /* widen the text column; its left edge grows leftward (image is pinned right).
+               The base rule caps this at 40.125rem, so lift the cap or width has no effect. */
+            width: 55%;
+            max-width: none;
+        }
+    }
+}
+
+/* Large Desktop - 1900px */
+@media only screen and (min-width: 118.75rem) {
+    #sbs-677 {
+        .cs-floater {
+            width: (292/16rem);
+            height: auto;
+            display: block;
+            position: absolute;
+            right: 0;
+            top: (20/16rem);
+        }
+    }
+}
+
+
+/*-- -------------------------- -->
+<---          Reviews           -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #reviews-353 {
+        padding: var(--sectionPadding);
+        position: relative;
+        border-top: 1px dashed #DDD2B8;
+        border-bottom: 1px dashed #DDD2B8;
+
+        /* Tint this section EEE4CF without hiding the blobs:
+           paint the color at z-index:-2 (behind the global blob layer at z-index:-1),
+           so the section reads as this color but the blobs still float on top of it. */
+        &:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: var(--secondary);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 48px - 64px */
+            gap: clamp(3rem, 6vw, 4rem);
+        }
+
+        .cs-content {
+            /* set text align to left if content needs to be left aligned */
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* centers content horizontally, set to flex-start to left align */
+            align-items: center;
+        }
+
+        .cs-card-group {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* roomy: clears the badge on stacked cards + separates the two columns */
+            gap: clamp(2.5rem, 6vw, 4rem);
+        }
+
+        .cs-item {
+            list-style: none;
+            width: 100%;
+            max-width: (620/16rem);
+            padding: 0;
+            box-sizing: border-box;
+            /* cover on the left, text column on the right */
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            /* 28px - 52px between cover and text */
+            gap: clamp(1.75rem, 4vw, 3.25rem);
+            position: relative;
+        }
+
+        /* Book cover — tilted pastel-gradient placeholder with a "coming soon" badge.
+           Drop a real <img> inside .cs-image and the gradient + label auto-hide. */
+        .cs-image {
+            flex: none;
+            /* 104px (small phones) - 200px, so the text column keeps room */
+            width: clamp(6.5rem, 26vw, 12.5rem);
+            aspect-ratio: 3 / 4;
+            border-radius: (8/16rem);
+            box-shadow: 0 (20/16rem) (38/16rem) rgba(61, 51, 39, 0.18);
+            position: relative;
+            margin-top: (12/16rem);
+            /* slight hand-placed tilt */
+            transform: rotate(-4deg);
+            /* diagonal stripe texture over a soft pastel gradient */
+            background-image:
+                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0, rgba(255, 255, 255, 0.35) 1.5px, transparent 1.5px, transparent 13px),
+                linear-gradient(135deg, var(--accentColorBlue), var(--primaryLight) 48%, var(--accentColorRose));
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: inherit;
+                display: block;
+            }
+
+            /* "coming soon!" badge, top-right, overlapping the corner */
+            &:before {
+                content: "coming soon!";
+                font-family: 'Caveat', cursive;
+                /* 16px - 18px */
+                font-size: clamp(1rem, 2.2vw, 1.125rem);
+                line-height: 1;
+                color: #fff;
+                background: var(--accentColorDeepRose);
+                padding: (6/16rem) (14/16rem);
+                border-radius: 999px;
+                white-space: nowrap;
+                position: absolute;
+                top: (-14/16rem);
+                right: (-14/16rem);
+                transform: rotate(-6deg);
+                box-shadow: 0 (6/16rem) (14/16rem) rgba(61, 51, 39, 0.18);
+                z-index: 2;
+            }
+
+            /* placeholder label — only while the cover is empty */
+            &:empty:after {
+                content: "Cover Art Placeholder";
+                font-family: 'Quicksand', sans-serif;
+                font-size: (11/16rem);
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: rgba(61, 51, 39, 0.5);
+                text-align: center;
+                position: absolute;
+                left: (8/16rem);
+                right: (8/16rem);
+                bottom: (22/16rem);
+            }
+        }
+
+        /* second cover: opposite-ish tilt + its own gradient */
+        .cs-item:nth-of-type(2) .cs-image {
+            transform: rotate(-2.5deg);
+            background-image:
+                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.35) 0, rgba(255, 255, 255, 0.35) 1.5px, transparent 1.5px, transparent 13px),
+                linear-gradient(135deg, var(--primaryLight), var(--accentColorGreen) 52%, var(--accentColorRose));
+        }
+
+        /* Text column */
+        .cs-flex-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .cs-name {
+            /* book title */
+            font-family: 'Libre Caslon Text', serif;
+            font-style: italic;
+            /* 28px - 38px */
+            font-size: clamp(1.75rem, 3.6vw, 1.75rem);
+            line-height: 1.15em;
+            font-weight: 700;
+            color: var(--headerColor);
+            margin: 0 0 (14/16rem);
+        }
+
+        .cs-job {
+            /* ages / release meta */
+            font-family: 'Quicksand', sans-serif;
+            font-size: (13/16rem);
+            line-height: 1.2em;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--bodyTextColor);
+            opacity: 0.85;
+            margin: 0 0 (26/16rem);
+        }
+
+        .cs-review {
+            /* description — matches the site body paragraph (.cs-text) */
+            font-family: 'Libre Caslon Text', serif;
+            font-size: var(--bodyFontSize);
+            line-height: 1.5em;
+            width: 100%;
+            margin: 0 0 (24/16rem);
+            color: var(--bodyTextColor);
+        }
+
+        .cs-topper2 {
+            /* handwritten note — matches the .cs-paragraph note used elsewhere */
+            font-family: 'Caveat', cursive;
+            font-size: clamp(0.8125rem, 1.6vw, 1.35rem);
+            line-height: 1.35em;
+            color: var(--handWrittenInk);
+        }
+
+        .cs-title .title-accent {
+            color: var(--accentColorDeepRose);
+            font-style: italic;
+            //text-decoration: underline;
+            text-decoration-thickness: 5px;
+            text-underline-offset: 10px;
+        }
+    }
+}
+
+/* Desktop - 1024px — cards go side-by-side only once there's real room.
+   Below this they stay full-width (one per row), keeping cover-left/text-right. */
+@media only screen and (min-width: 64rem) {
+    #reviews-353 {
+        .cs-card-group {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch;
+        }
+    }
+}
+
+
+/*-- -------------------------- -->
+<---           Contact             -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #contact-493 {
+        /* Centers button */
+        text-align: center;
+        padding: clamp(4rem, 25.95vw, 4rem) (16/16rem);
+        /* 56px on phones - 150px on desktop */
+        padding-bottom: clamp(3.5rem, 12vw, 9.375rem);
+        /* prevents the topper line from causing an overflow */
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        
+
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            
+
+            &:before {
+                /* Overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: var(--primary);
+                /* light wash so the blob layer behind the section stays visible */
+                opacity: 0.15;
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                /* prevents the cursor from interacting with it */
+                pointer-events: none;
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                /* faint paper texture so the blobs read through */
+                opacity: 0.25;
+            }
+        }
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            /* changes at tablet */
+            gap: (48/16rem);
+        }
+
+        .cs-content {
+            width: 100%;
+            max-width: (630/16rem);
+        }
+
+        
+
+        .cs-title {
+            /* 39px - 100px */
+            font-size: clamp(2.4375rem, 7.8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-align: center;
+            max-width: (829/16rem);
+            /* 16px - 24px */
+            margin: 0 auto clamp(1rem, 4vw, 1.5rem) 0;
+            color: var(--headerColor);
+            position: relative;
+            font-family: 'Libre Caslon Text', serif;
+        }
+
+        .cs-title .title-accent {
+            color: var(--accentColorDeepRose);
+            font-style: italic;
+            //text-decoration: underline;
+            text-decoration-thickness: 5px;
+            text-underline-offset: 10px;
+        }
+
+        .cs-text {
+            /* 16px - 35px */
+            font-size: clamp(1rem, 2.73vw, 1.15rem);
+            line-height: 1.5em;
+            text-align: center;
+            width: 100%;
+            
+        }
+
+        .cs-button-solid {
+            font-family: 'Quicksand', Arial, sans-serif;
+            font-size: (14/16rem);
+            /* 46px - 56px */
+            line-height: clamp(2.875rem, 5.5vw, 2.5rem);
+            text-decoration: none;
+            //font-weight: 700;
+            text-align: center;
+            margin: 25px auto 25px auto;
+            color: white;
+            min-width: (150/16rem);
+            padding: 0 (32/16rem);
+            border-radius: (32/16rem);
+            /* row layout so the icon sits inline with the label */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: (10/16rem);
+            position: relative;
+            z-index: 1;
+            /* prevents padding from adding to the width */
+            box-sizing: border-box;
+            background-color: var(--headerColor);
+
+            .cs-button-icon {
+                width: (20/16rem);
+                height: auto;
+                display: block;
+            }
+
+            /*
+            &:before {
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 0%;
+                background: #000;
+                opacity: 1;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                border-radius: (4/16rem);
+                transition: width 0.3s;
+            }
+                
+
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
+            }
+                */
+        }
+
+        .title-accent2 {
+            color: var(--headerColor);
+            text-decoration: underline;
+            //text-decoration-thickness: 2px;
+            text-underline-offset: 7px;
+        }
+    }
+}
+          
+
+                            
+/*-- -------------------------- -->
+<---           FAQ              -->
+<--- -------------------------- -*/
+
+/* Mobile */
+@media only screen and (min-width: 0rem) {
+	#faq-2490 {
+		background-color: var(--backgroundColor);
+		overflow: hidden;
+		position: relative;
+		z-index: 1;
+        border-top: 1px dashed #DDD2B8;
+        border-bottom: 1px dashed #DDD2B8;
+        padding: clamp(4rem, 25.95vw, 4rem) (16/16rem);
+
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            
+
+            &:before {
+                /* Overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: var(--primary);
+                /* light wash so the blob layer behind the section stays visible */
+                opacity: 0.15;
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                /* prevents the cursor from interacting with it */
+                pointer-events: none;
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                /* faint paper texture so the blobs read through */
+                opacity: 0.25;
+            }
+        }
+
+		.cs-container {
+			width: 100%;
+			max-width: (1280/16rem);
+			margin: auto;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;  
+		}
+
+		.cs-content {
+			/* set text align to left if content needs to be left aligned */
+			text-align: center;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			/* centers content horizontally, set to flex-start to left align */
+			position: relative;
+			z-index: 3;
+		}
+        
+		.cs-button-solid {
+			font-size: (16/16rem);
+			font-weight: 700;
+			/* 46px - 56px */
+			line-height: clamp(2.875em, 5.5vw, 3.5em);
+			text-align: center;
+			text-decoration: none;
+			min-width: (150/16rem);
+			margin: 0;
+			/* prevents padding from adding to the width */
+			box-sizing: border-box;
+			padding: 0 (24/16rem);
+			background-color: var(--secondary);
+			overflow: hidden;
+			color: #fff;
+			border: none;
+			border-radius: (4/16rem);
+			display: inline-block;
+			position: relative;
+			z-index: 1;
+			transition: color 0.3s;
+
+			&:before {
+				content: "";
+				width: 0;
+				height: 100%;
+				background: #000;
+				opacity: 1;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: -1;
+				transition: width 0.3s;
+			}
+
+			&:hover {
+				color: #fff;
+
+				&:before {
+					width: 100%;
+				}
+			}
+		}
+
+		.cs-wrapper {
+			padding: clamp(2rem, 25.95vw, 2rem) (16/16rem);
+			background-color: var(--backgroundColor);
+			position: relative;
+		}
+
+		.cs-card-group {
+			list-style-type: none;
+			width: 100%;
+			max-width: (1080/16rem);
+			margin: auto;
+			padding: 0;
+			display: grid;
+			grid-template-columns: repeat(12, 1fr);
+			column-gap: clamp(1.25rem, 2vw, 2rem);
+			row-gap: clamp(1.25rem, 2vw, 2rem);
+		}
+
+		.cs-item {
+			padding: clamp(2rem, 3vw, 2.25rem);
+			//background-color: #fff;
+			border: 1px solid #DDD2B8;
+            border-radius: (8/16rem);
+			display: flex;
+			flex-direction: column;
+			grid-column: span 12;
+			gap: (32/16rem);
+            background-color: #f9f4e7
+		}
+
+		.cs-h3 {
+			font-size: (25/16rem);
+			font-weight: 700;
+			line-height: 1.2em;
+			text-align: left;
+			margin: 0 0 (16/16rem);
+			color: var(--headerColor);
+		}
+
+        
+
+		.cs-item-text {
+			font-size: (16/16rem);
+			line-height: 1.5em;
+			text-align: left;
+			margin: 0;
+			margin: 0 0 (32/16rem);
+			color: var(--bodyTextColor);
+		}
+
+		.cs-ul {
+			margin: 0 0 (32/16rem);
+			padding-left: (24/16rem);
+			color: var(--bodyTextColor);
+			display: flex;
+			flex-direction: column;
+			gap: (20/16rem);
+		}
+
+		.cs-li {
+			line-height: 1.5em;
+			list-style: none;
+			color: var(--headerColor);
+			position: relative;
+
+			&:before {
+				/* custom list bullet */
+				content: "";
+				width: 3px;
+				height: 3px;
+				background: currentColor;
+				opacity: 1;
+				border-radius: 50%;
+				display: block;
+				position: absolute;
+				top: (10/16rem);
+				left: (-12/16rem);
+			}
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+
+		.cs-picture {
+			width: 100%;
+			height: (160/16rem);
+			display: block;
+			position: relative;
+
+			img {
+				width: 100%;
+				height: 100%;
+				/* contain = show the whole logo, never crop; center it in the box */
+				object-fit: contain;
+				object-position: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+	}
+}
+
+/* Tablet - 600px */
+@media only screen and (min-width: 600px) {
+	#faq-2490 {
+		.cs-item {
+			grid-column: span 6;
+		}
+	}
+}
+
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+	#faq-2490 {
+		.cs-item {
+			grid-column: span 4;
+		}
+	}
+}
+
+
+/*-- -------------------------- -->
+<---           Footer           -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #cs-footer-108 {
+        /* 40px - 100px top and bottom */
+        padding: clamp(2.5rem, 7.9vw, 2.25rem) (16/16rem);
+        /* 40px - 50px */
+        padding-bottom: clamp(2.5rem, 7.9vw, 3.125rem);
+        /* anchor + contain the .cs-background:
+           relative pins it to the footer; isolation makes the footer a stacking
+           context so the bg's z-index:-2 stays above the body's cream, not behind it */
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+
+        .cs-background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            
+
+            &:before {
+                /* Overlay */
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: var(--primary);
+                /* light wash so the blob layer behind the section stays visible */
+                opacity: 0.15;
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                /* prevents the cursor from interacting with it */
+                pointer-events: none;
+            }
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                /* faint paper texture so the blobs read through */
+                opacity: 0.25;
+            }
+        }
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+        }
+
+        /* Match the header wordmark: Libre Caslon + Caveat "Author" subtitle */
+        .cs-logo {
+            font-family: 'Libre Caslon Text', Arial, sans-serif;
+            font-size: 20px;
+            color: var(--headerColor);
+            text-align: center;
+            margin: 0 0 (12/16rem);
+            display: block;
+        }
+
+        .cs-logo-subtitle {
+            font-family: 'Caveat', Arial, sans-serif;
+            padding-left: 10px;
+            color: var(--accentColorDeepRose);
+        }
+
+        .cs-ul {
+            /* 40px - 60px*/
+            padding: 0 0 clamp(2.5rem, 4.7vw, 3.75rem);
+            margin: auto;
+            border-bottom: 1px solid #eff0f6;
+        }
+
+        .cs-li {
+            list-style: none;
+            text-align: center;
+            margin-bottom: (20/16rem);
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        .cs-link {
+            /* 16px - 20px */
+            font-size: clamp(1rem, 1.55vw, 1.25rem);
+            line-height: 1.5em;
+            text-decoration: none;
+            font-weight: 700;
+            color: var(--bodyTextColor);
+            position: relative;
+
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
+            }
+
+            &:before {
+                /* top right box */
+                content: "";
+                width: 0%;
+                height: (3/16rem);
+                background: var(--bodyTextColor);
+                opacity: 1;
+                position: absolute;
+                display: block;
+                bottom: (-2/16rem);
+                left: 0;
+                transition: width 0.3s;
+            }
+        }
+
+        .cs-copyright {
+            /* 14px - 16px */
+            font-size: clamp(0.875rem, 1.6vw, 1rem);
+            text-align: center;
+            //color: var(--bodyTextColor);
+            letter-spacing: 1.5px;
+            display: block;
+            /* 20px - 28px */
+            margin: clamp(1.25rem, 2.8vw, 1.75rem) auto 0;
+        }
+    }
+}
+
+/* Tablet - 600px */
+@media only screen and (min-width: 37.5rem) {
+    #cs-footer-108 {
+        .cs-ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cs-li {
+            /* 44px - 88px */
+            margin: 0 clamp(2.75rem, 6.2vw, 5.5rem) 0 0;
+            &:last-of-type {
+                margin: 0;
+            }
+        }
+    }
+}
+
+                                
+                                
