@@ -52,12 +52,21 @@
                 <!-- Spread filter: feMorphology/dilate grows the colored area outward
                      (no blur), then a hair of blur just knocks the hard edge off. -->
                 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-                    <!-- Generous region so the dilate+blur never gets clipped to a
-                         rectangle (that clipping is what squares off blobs on mobile,
-                         where they're small and the fixed expansion is proportionally large). -->
+                    <!-- feMorphology dilate uses a SQUARE brush, so its fixed radius
+                         squares off convex points. The blobs shrink on smaller screens
+                         (font-size scale), so we scale the filter radius to match —
+                         desktop uses cs-spread, tablet cs-spread-md, phone cs-spread-sm. -->
                     <filter id="cs-spread" x="-75%" y="-75%" width="250%" height="250%" color-interpolation-filters="sRGB">
                         <feMorphology operator="dilate" radius="12" result="spread"/>
                         <feGaussianBlur in="spread" stdDeviation="10.5"/>
+                    </filter>
+                    <filter id="cs-spread-md" x="-75%" y="-75%" width="250%" height="250%" color-interpolation-filters="sRGB">
+                        <feMorphology operator="dilate" radius="8" result="spread"/>
+                        <feGaussianBlur in="spread" stdDeviation="8"/>
+                    </filter>
+                    <filter id="cs-spread-sm" x="-75%" y="-75%" width="250%" height="250%" color-interpolation-filters="sRGB">
+                        <feMorphology operator="dilate" radius="5" result="spread"/>
+                        <feGaussianBlur in="spread" stdDeviation="5.5"/>
                     </filter>
                 </svg>
                 <svg class="cs-blob cs-blob-1" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M28,-58C40,-50,68,-52,74,-33C80,-14,53,-6,55,9C57,24,80,33,71,50C62,67,33,53,17,61C1,69,-3,90,-22,83C-41,76,-29,50,-42,40C-55,30,-80,35,-79,15C-78,-5,-52,-6,-52,-23C-52,-40,-71,-57,-55,-68C-39,-79,-19,-57,-1,-60C11,-62,16,-66,28,-58Z"/></svg>

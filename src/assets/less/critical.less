@@ -15,8 +15,9 @@
         /* Centers button */
         text-align: center;
         /* 200px - 300px - leaving extra space for the navigation */
-        padding: clamp(3rem, 25.95vw, 3rem) (16/16rem);
-        padding-bottom: (80/16rem);
+        padding: clamp(3rem, 25.95vw, 5rem) (16/16rem);
+        /* bottom intentionally less than the top */
+        padding-bottom: (48/16rem);
         /* prevents the topper line from causing an overflow */
         overflow: hidden;
         position: relative;
@@ -99,7 +100,7 @@
             letter-spacing: 0.1em;
             text-align: center;
             text-transform: uppercase;
-            margin-bottom: (16/16rem);
+            margin-bottom: (25/16rem);
             color: var(--headerColor);
             display: inline-block;
             position: relative;
@@ -146,7 +147,7 @@
             text-align: center;
             max-width: (829/16rem);
             /* 16px - 24px */
-            margin: 0 auto clamp(1rem, 4vw, 1.5rem) 0;
+            margin: 0 auto clamp(1.5rem, 4vw, 1.5rem) 0;
             color: var(--headerColor);
             position: relative;
             font-family: 'Libre Caslon Text', serif;
@@ -180,7 +181,7 @@
         .cs-button-solid {
             font-family: 'Caveat', Arial, sans-serif;
             /* 20px (mobile) - 28px (desktop); matches the floating note text */
-            font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+            font-size: var(--topperFontSize);
             /* 46px - 56px */
             line-height: clamp(2.875rem, 5.5vw, 3.5rem);
             text-decoration: none;
@@ -284,6 +285,8 @@
    ── size knob: .cs-note text font-size · position knobs: top / left / right ── */
 @media only screen and (min-width: 48rem) {
     #hero-493 {
+        padding: clamp(3rem, 25.95vw, 3rem) (16/16rem);
+        
         .cs-note text {
             font-size: 1.7rem; /* ~24px */
         }
@@ -297,6 +300,14 @@
             top: 42%;
             right: -3rem;
         }
+
+        .cs-topper {
+            margin-bottom: (16/16rem);
+        }
+
+        .cs-title {
+            margin: 0 auto clamp(1rem, 4vw, 1.5rem) 0;
+        }
     }
 }
 
@@ -304,6 +315,8 @@
    ── size knob: .cs-note text font-size · position knobs: top / left / right ── */
 @media only screen and (min-width: 64rem) {
     #hero-493 {
+         padding: clamp(3rem, 25.95vw, 3rem) (16/16rem);
+        
         .cs-note text {
             font-size: 1.75rem; /* 28px */
         }
@@ -317,6 +330,16 @@
             top: (350/16rem);
             right: (-150/16rem);
         }
+
+        .cs-topper {
+            margin-bottom: (16/16rem);
+        }
+
+        .cs-title {
+            margin: 0 auto clamp(1rem, 4vw, 1.5rem) 0;
+        }
     }
 }
-          
+
+
+

@@ -28,10 +28,10 @@
 
 		/* 13px - 16px */
 		//font-size: (28/16rem);
-		--topperFontSize: clamp(0.8125rem, 2.6vw, 1.5rem);
+		--topperFontSize: clamp(1.35rem, 2.6vw, 1.5rem);
 		/* 31px - 49px */
-		--headerFontSize: clamp(1.9375rem, 3.9vw, 3.0625rem);
-		--bodyFontSize: 1.1rem;
+		--headerFontSize: clamp(1.8rem, 3.9vw, 3.0625rem);
+		--bodyFontSize: clamp(1rem, 2.6vw, 1.1rem);
 		/* 60px - 100px top and bottom */
 		--sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
 
@@ -129,9 +129,12 @@
 	   No "only screen" here so LESS merges cleanly with the outer media query. */
 	@media (max-width: 63.9375rem) {
 		.cs-blobs { font-size: 0.72rem; } /* tablet ≈ 72% */
+		/* smaller dilate radius to match the smaller blobs → less square-off */
+		.cs-blob { filter: url(#cs-spread-md); }
 	}
 	@media (max-width: 47.9375rem) {
 		.cs-blobs { font-size: 0.5rem; }  /* phone ≈ 50% */
+		.cs-blob { filter: url(#cs-spread-sm); }
 	}
 
 	/* Three morph flavors — slow rotate + non-uniform scale = lazy squash/stretch.
