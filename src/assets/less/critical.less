@@ -23,45 +23,6 @@
         z-index: 1;
         
 
-        .cs-background {
-            width: 100%;
-            height: 100%;
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -2;
-            
-
-            &:before {
-                /* Overlay */
-                content: "";
-                width: 100%;
-                height: 100%;
-                background: var(--primary);
-                /* light wash so the blob layer behind the hero stays visible */
-                opacity: 0.15;
-                position: absolute;
-                display: block;
-                top: 0;
-                left: 0;
-                z-index: 1;
-                /* prevents the cursor from interacting with it */
-                pointer-events: none;
-            }
-
-            img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-                /* faint paper texture so the blobs read through */
-                opacity: 0.25;
-            }
-        }
-
         .cs-container {
             width: 100%;
             max-width: (1280/16rem);
