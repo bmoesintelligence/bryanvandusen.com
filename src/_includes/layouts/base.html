@@ -52,7 +52,10 @@
                 <!-- Spread filter: feMorphology/dilate grows the colored area outward
                      (no blur), then a hair of blur just knocks the hard edge off. -->
                 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-                    <filter id="cs-spread" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+                    <!-- Generous region so the dilate+blur never gets clipped to a
+                         rectangle (that clipping is what squares off blobs on mobile,
+                         where they're small and the fixed expansion is proportionally large). -->
+                    <filter id="cs-spread" x="-75%" y="-75%" width="250%" height="250%" color-interpolation-filters="sRGB">
                         <feMorphology operator="dilate" radius="12" result="spread"/>
                         <feGaussianBlur in="spread" stdDeviation="10.5"/>
                     </filter>
