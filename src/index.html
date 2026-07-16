@@ -22,9 +22,10 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
         <link rel="stylesheet" href="/assets/css/local.css"/>
     {% endif %}
 
-    <!-- To ensure proper validation, prevent errors, and encourage developers to check, schema's are an opt-in feature. They're very bespoke and requires some customising  -->
-    <!-- Uncomment the code below to enable Structured Data, and test it when you deploy to Netlify - https://developers.google.com/search/docs/appearance/structured-data -->
-    <!-- {% include "components/home-schema.html" %} -->
+    <!-- Structured data: Person (the author) + WebSite. Book entries are deliberately
+         omitted until the second title is settled — see CLAUDE.md. Validate changes at
+         https://validator.schema.org/ -->
+    {% include "components/home-schema.html" %}
 {% endblock %}
 
 {% block body %}
@@ -164,7 +165,7 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
         <div class="cs-container">
             <div class="cs-content">
                 <span class="cs-topper">~ keep in touch ~</span>
-                <h1 class="cs-title">Say hello, <span class="title-accent">or follow along.</span></h1>
+                <h2 class="cs-title">Say hello, <span class="title-accent">or follow along.</span></h2>
                 <p class="cs-text">
                     News on the books, glimpses from the studio, and the occasional very small chipmunk. I'd love to hear from you — especially from teachers, librarians, and parents. 
                 </p>
@@ -172,7 +173,7 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
                     <img class="cs-button-icon" src="/assets/images/instagram-white-icon.svg" alt="" aria-hidden="true" width="20" height="20" decoding="async">
                     FOLLOW ON INSTAGRAM
                 </a>
-                <span class="cs-topper">or write to <a class="title-accent2" href="mailto:hello@bryanvandusen.com">hello@bryanvandusen.com</a></span>
+                <span class="cs-topper">or write to <a class="title-accent2" href="mailto:{{ client.email }}">{{ client.email }}</a></span>
             </div>
         </div>
     </section>
@@ -185,7 +186,7 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
     <section id="faq-2490">
         <div class="cs-container">
             <div class="cs-content">
-                <span class="cs-topper">~ in good company with ~</span>
+                <h2 class="cs-topper">~ in good company with ~</h2>
                 
             </div>
         </div>

@@ -1,7 +1,8 @@
 module.exports = {
     name: "Bryan Van Dusen",
-    // TODO: placeholder — swap in the real address before launch
-    email: "vandusenbryan@gmail.com",
+    // Shown on the Contact section and in the Person schema. Needs a mailbox or
+    // forwarder on the domain once DNS is pointed, or contact mail bounces.
+    email: "hello@bryanvandusen.com",
     socials: {
         instagram: "https://www.instagram.com/bryanvandusenauthor/",
     },

@@ -83,7 +83,13 @@ texture. Storybook elegance: display serif + handwritten accent.
 - **Libre Caslon Text** — `.cs-title` headings + italic sublines. Emphasis = `.title-accent`
   (italic, deep rose, offset underline).
 - **Caveat** — handwritten accents: global `.cs-topper`, "keep reading", margin notes, book badges.
-- **Quicksand** — the hero topper override + book meta (uppercase, letter-spaced).
+- **Quicksand** — the hero topper override + book meta (uppercase, letter-spaced), nav links, footer copyright.
+
+`--bodyFont` / `--headerFont` both resolve to Libre Caslon — they're the *inherited fallback*,
+not the main event; nearly every class sets its own family. **Roboto was removed** (it shipped with
+the kit as the fallback and was silently rendering the mobile wordmark, mobile nav links, and the
+footer copyright — so those three swapped font across the 64rem breakpoint). If you add an element
+with no explicit `font-family`, it lands on Libre Caslon; set the family deliberately.
 
 ## Architecture gotchas (hard-won — read before touching layout)
 
@@ -114,7 +120,7 @@ texture. Storybook elegance: display serif + handwritten accent.
   SVG internal margin (`viewBox="-50 -50 300 300"` + ×1.5 widths + position compensation) so the
   filter never overflows its box.
 - **Tinting a section without hiding the blobs:** paint the color in a `::before` at
-  `z-index: -2` (below the blob layer) — see `#reviews-353`. A plain `background-color`
+  `z-index: -2` (below the blob layer) — see `#books`. A plain `background-color`
   would cover them.
 - **Hero handwritten notes:** each SVG's CSS `width` = its own `viewBox` width → renders 1:1,
   which makes the `<text>` `font-size` a *literal pixel size* (no ratio math).
@@ -138,24 +144,42 @@ texture. Storybook elegance: display serif + handwritten accent.
 2. **Hero** (`#hero-493`, critical.less) — topper "CHILDREN'S AUTHOR" with flanking rules;
    "Stories for *brave* little humans." (hard `<br>`s to lock the 3-line wrap at all widths);
    italic subline; "keep reading" + hand-drawn arrow; two floating Caveat notes (desktop only, ≥64rem).
-3. **About** (`#sbs-677`) — oval portrait; "A storyteller raised among *forests, animals,*…"
+3. **About** (`#about`) — oval portrait; "A storyteller raised among *forests, animals,*…"
    with a hand-drawn SVG oval; bio; handwritten margin note.
-4. **Books** (`#reviews-353`) — `--secondary` tinted band; two book cards (cover placeholder +
+4. **Books** (`#books`) — `--secondary` tinted band; two book cards (cover placeholder +
    title/meta/description/note). Cards stack full-width until `64rem`.
 5. **Publishers** (`#faq-2490`) — "in good company with" + 3 logos.
-6. **Contact** (`#contact-493`) — "Say hello, *or follow along.*"; Instagram button; mailto.
+6. **Contact** (`#contact`) — "Say hello, *or follow along.*"; Instagram button; mailto.
 7. **Footer** (`#cs-footer-108`) — wordmark + copyright.
 
 ## Status / open questions
 
 - [x] All sections built + responsive (mobile/tablet/desktop)
 - [x] Blobs, texture, smooth scroll, favicons (`icon-C-washes`), OG image, image optimization
+- [x] **HTML validates clean** — 0 errors, 0 warnings (validator.w3.org/nu). Two were fixed:
+      an `aria-label` on the `<p class="cs-logo">` (invalid on a paragraph role — it also still
+      read "[Company Name]"), and `#faq-2490` having no heading (its topper is now an `<h2>`).
+      The Contact title was a second `<h1>`; it's an `<h2>` now. Re-check after markup changes:
+      `curl -H "Content-Type: text/html; charset=utf-8" --data-binary @public/index.html \
+      "https://validator.w3.org/nu/?out=json"`
+- [x] **Link check** — every asset ref, CSS `url()`, anchor target and external link resolves.
+- [x] **Schema markup** — `components/home-schema.html`, Person + WebSite, wired into `index.html`.
+      The kit shipped it as `LocalBusiness` (wrong for an author) and commented out. **Interpolate
+      with `| dump | safe`, never bare `{{ }}`** — JSON-LD is raw text inside `<script>`, so
+      Nunjucks' autoescaped `&#39;` does *not* get decoded and consumers read it literally.
 - [ ] **Book title conflict — needs a decision.** His bio says the books are *Sky's Got Glitter*
       and ***A Wish for a Weed***, but the Books section still says ***The Cardboard Castle***.
+      Its card copy ("turns a cardboard box into grand adventures") is written for the Castle
+      concept, so renaming needs new description + badge copy too. **Book entries are deliberately
+      left out of the schema until this settles.**
 - [ ] **Real book cover art** — currently CSS gradient placeholders with a "coming soon!" badge.
-- [ ] **Real email** — `client.js` has `vandusenbryan@gmail.com`; the page shows
-      `hello@bryanvandusen.com`. Neither confirmed.
-- [ ] **Domain** — `client.domain` drives canonical/og:url/sitemap. Update when DNS is pointed.
+- [x] **Email** — settled on `hello@bryanvandusen.com`; `client.js` is the single source of truth
+      and the Contact mailto + schema both read from it.
+- [ ] **`hello@` mailbox must exist before launch** — the address is on the page, so contact mail
+      silently bounces until a mailbox or Gmail forwarder is set up with DNS.
+- [ ] **Domain** — `client.domain` drives canonical/og:url/sitemap. Already set to the real
+      `https://www.bryanvandusen.com` (confirmed as the launch domain); DNS not yet pointed.
+- [ ] **Analytics** — deliberately skipped for launch.
 - [ ] **Designed OG image** — current one is just the mark on cream; a Figma export with the
       wordmark would share far better. Drop in at `src/assets/images/og-image.jpg`.
 - [ ] Consider using his full bio ("advocate for inclusion", "Washington, London, Los Angeles")

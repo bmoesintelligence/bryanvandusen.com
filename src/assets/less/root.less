@@ -35,8 +35,8 @@
 		/* 60px - 100px top and bottom */
 		--sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
 
-		--headerFont: "Roboto", Arial, sans-serif;
-		--bodyFont: "Roboto", Arial, sans-serif;
+		--headerFont: 'Libre Caslon Text', serif;
+		--bodyFont: 'Libre Caslon Text', serif;
 	}
 
 	html,
@@ -388,33 +388,6 @@
 /* Fonts */
 @media only screen and (min-width: 0px) {
 	// Grab your fonts to locally host from https://gwfh.mranftl.com/fonts
-	/* roboto-regular - latin */
-	@font-face {
-		font-style: normal;
-		font-family: "Roboto";
-		font-weight: 400;
-		font-display: swap;
-		src: local(""), url("/assets/fonts/roboto-v29-latin-regular.woff2") format("woff2"), /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/roboto-v29-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-	}
-
-	/* roboto-700 - latin */
-	@font-face {
-		font-style: normal;
-		font-family: "Roboto";
-		font-weight: 700;
-		font-display: swap;
-		src: local(""), url("/assets/fonts/roboto-v29-latin-700.woff2") format("woff2"), /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/roboto-v29-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-	}
-
-	/* roboto-900 - latin */
-	@font-face {
-		font-style: normal;
-		font-family: "Roboto";
-		font-weight: 900;
-		font-display: swap;
-		src: local(""), url("/assets/fonts/roboto-v29-latin-900.woff2") format("woff2"), /* Chrome 26+, Opera 23+, Firefox 39+ */ url("/assets/fonts/roboto-v29-latin-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-	}
-
 	/* libre-caslon-text-regular - latin */
 	@font-face {
 		font-display: swap; 
@@ -764,6 +737,7 @@
 
 		.cs-li-link {
 			/* 16px - 24px */
+			font-family: 'Quicksand', Arial, sans-serif;
 			font-size: clamp(1rem, 2.5vw, 1.5rem);
 			line-height: 1.2em;
 			text-decoration: none;
@@ -975,242 +949,6 @@
 					width: 100%;
 				}
 			}
-		}
-	}
-}
-                            
-
-/*-- -------------------------- -->
-<---          Footer            -->
-<--- -------------------------- -*/
-
-/* Mobile - 360px */
-@media only screen and (min-width: 0px) {
-	#cs-footer-275 {
-		padding: var(--sectionPadding);
-		background-color: #1a1a1a;
-
-		.cs-container {
-			width: 100%;
-			/* reset on tablet */
-			max-width: (550/16rem);
-			margin: auto;
-			display: flex;
-			justify-content: flex-start;
-			align-items: flex-start;
-			flex-wrap: wrap;
-			column-gap: (88/16rem);
-			row-gap: (32/16rem);
-		}
-
-		.cs-logo-group {
-			/* takes up all the space, lets the other ul's wrap below it */
-			width: 100%;
-			position: relative;
-		}
-
-		.cs-logo {
-			/* 210px - 240px */
-			width: clamp(13.125rem, 8vw, 15rem);
-			height: auto;
-			display: block;
-			/* 28px - 44px */
-			margin-bottom: clamp(1.75rem, 4.17vw, 2.75rem);
-		}
-
-		.cs-logo-img {
-			width: 100%;
-			height: auto;
-
-			&.dark {
-				display: none;
-			}
-		}
-
-		.cs-text {
-			color: var(--bodyTextColorWhite);
-			margin-bottom: (16/16rem);
-		}
-
-		.cs-social {
-			display: inline-flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			gap: (12/16rem);
-			position: absolute;
-			top: 0;
-			right: 0;
-		}
-
-		.cs-social-link {
-			width: (24/16rem);
-			height: (24/16rem);
-			background-color: #4e4b66;
-			border-radius: 50%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			position: relative;
-			z-index: 1;
-			transition: transform 0.3s, background-color 0.3s;
-
-			&:hover {
-				background-color: #1a1a1a;
-				transform: translateY(-0.1875rem);
-			}
-		}
-
-		.cs-social-img {
-			height: (13/16rem);
-			width: auto;
-			display: block;
-		}
-
-		/* Navigation Links */
-		.cs-nav {
-			padding: 0;
-			margin: 0;
-		}
-
-		.cs-nav-li {
-			list-style: none;
-			margin-bottom: (16/16rem);
-			&:last-of-type {
-				margin-bottom: 0;
-			}
-		}
-
-		.cs-header {
-			font-size: (16/16rem);
-			line-height: 1.5em;
-			font-weight: 700;
-			color: var(--bodyTextColorWhite);
-			position: relative;
-
-			&:after {
-				content: "";
-				width: (32/16rem);
-				height: (4/16rem);
-				margin: (16/16rem) auto (24/16rem) 0;
-				background: var(--primary);
-				opacity: 1;
-				position: relative;
-				display: block;
-			}
-		}
-
-		.cs-nav-link {
-			font-size: (16/16rem);
-			text-decoration: none;
-			line-height: 1.5em;
-			color: var(--bodyTextColorWhite);
-			position: relative;
-
-			&:before {
-				/* underline */
-				content: "";
-				width: 0%;
-				height: (2/16rem);
-				background: var(--bodyTextColorWhite);
-				opacity: 1;
-				position: absolute;
-				display: block;
-				bottom: (-2/16rem);
-				left: 0;
-				transition: width 0.3s;
-			}
-
-			&:hover {
-				&:before {
-					width: 100%;
-				}
-			}
-		}
-
-		/* Contact Links */
-		.cs-contact {
-			margin: 0;
-			padding: 0;
-			width: 35%;
-		}
-
-		.cs-contact-li {
-			list-style: none;
-			margin-bottom: (0/16rem);
-			&:last-of-type {
-				margin-bottom: 0;
-			}
-		}
-
-		.cs-contact-link {
-			font-size: (16/16rem);
-			text-decoration: none;
-			line-height: 1.5em;
-			text-align: left;
-			color: var(--bodyTextColorWhite);
-			display: inline-block;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-
-		.cs-address {
-			font-size: (16/16rem);
-			margin-bottom: (20/16rem);
-		}
-	}
-}
-
-/* Tablet - 768px */
-@media only screen and (min-width: 48rem) {
-	#cs-footer-275 {
-		.cs-container {
-			max-width: (1280/16rem);
-			row-gap: 0;
-		}
-
-		.cs-contact {
-			flex-direction: row;
-			justify-content: space-between;
-			border-top: none;
-		}
-
-		.cs-contact-li {
-			margin: 0;
-		}
-	}
-}
-
-/* Small Desktop - 1024px */
-@media only screen and (min-width: 64rem) {
-	#cs-footer-275 {
-		.cs-container {
-			/* pushes all flex children to the top */
-			align-items: flex-start;
-			justify-content: flex-end;
-		}
-
-		.cs-logo-group {
-			/* pushes everything to the right of it as far as possible in a flexbox */
-			margin-right: auto;
-			width: auto;
-			max-width: (305/16rem);
-		}
-
-		.cs-text {
-			width: 100%;
-		}
-
-		.cs-social {
-			flex-direction: row;
-			position: relative;
-			top: auto;
-			right: auto;
-		}
-
-		.cs-contact {
-			width: auto;
 		}
 	}
 }

@@ -1,35 +1,34 @@
+{#- JSON-LD lives in a <script> block, which the HTML parser treats as raw text.
+    Nunjucks' default autoescaping would turn an apostrophe into &#39; and consumers
+    would read it literally ("children&#39;s author"), so every interpolated string
+    goes through `dump` (JSON.stringify — emits its own quotes) + `safe`. -#}
 <script type="application/ld+json">
     {
-        "@context": "http://schema.org",
-        "@type": "LocalBusiness",
-        "name": "{{ client.name }}",
-        {% if preloadImg %}"image": "{{ client.domain }}{{ preloadImg }}",{% endif %}
-        {% if client.phoneFormatted %}"telephone": "{{ client.phoneFormatted }}",{% endif %}
-        {% if client.email %}"email": "{{ client.email }}",{% endif %}
-        {% if client.address %}
-            "address": {
-                "@type": "PostalAddress" {%- if client.address.lineOne -%},
-                    "streetAddress": "{{ client.address.lineOne }}{% if client.address.lineTwo %}, {{ client.address.lineTwo }}{% endif %}"
-                {%- endif -%}
-                {%- if client.address.city -%},
-                    "addressLocality": "{{ client.address.city }}"
-                {%- endif -%}
-                {%- if client.address.state -%},
-                    "addressRegion": "{{ client.address.state }}"
-                {%- endif -%}
-                {%- if client.address.zip -%},
-                    "postalCode": "{{ client.address.zip }}"
-                {%- endif -%}
-                {%- if client.address.country -%},
-                    "addressCountry": "{{ client.address.country }}"
-                {%- endif -%}
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": {{ (client.domain + "/#person") | dump | safe }},
+                "name": {{ client.name | dump | safe }},
+                "jobTitle": "Children's Author",
+                "description": {{ description | dump | safe }},
+                "url": {{ (client.domain + "/") | dump | safe }},
+                "image": {{ (client.domain + "/assets/images/og-image.jpg") | dump | safe }},
+                {% if client.email %}"email": {{ ("mailto:" + client.email) | dump | safe }},{% endif %}
+                "knowsAbout": ["Children's picture books", "Self-expression", "Inclusion"]
+                {%- if client.socials %},
+                "sameAs": [{% for platform, url in client.socials %}{% if not loop.first %}, {% endif %}{{ url | dump | safe }}{% endfor %}]
+                {%- endif %}
             },
-        {% endif %}
-        {% if client.domain and page.url %}"url": "{{ client.domain }}{{ page.url }}",{% endif %}
-        {% if client.socials %}
-            "sameAs": [{%- for platform, url in client.socials -%}
-                    {% if not loop.first %},{% endif %}"{{ url }}"
-                {%- endfor -%}]
-        {% endif %}
+            {
+                "@type": "WebSite",
+                "@id": {{ (client.domain + "/#website") | dump | safe }},
+                "url": {{ (client.domain + "/") | dump | safe }},
+                "name": {{ title | dump | safe }},
+                "description": {{ description | dump | safe }},
+                "inLanguage": "en",
+                "publisher": { "@id": {{ (client.domain + "/#person") | dump | safe }} }
+            }
+        ]
     }
 </script>
