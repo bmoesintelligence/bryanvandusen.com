@@ -67,11 +67,13 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
             <div class="cs-image-group">
                 <!--Main Image-->
                 <picture class="cs-picture">
-                    <!--Mobile Image-->
-                    <source media="(max-width: 600px)" srcset="/assets/images/bryan_vandusen_cropped.jpg">
-                    <!--Tablet and above Image-->
-                    <source media="(min-width: 601px)" srcset="/assets/images/bryan_vandusen_cropped.jpg">
-                    <img loading="lazy" decoding="async" src="/assets/images/bryan_vandusen_cropped.jpg" alt="landscape" width="562" height="568">
+                    <!--Mobile: smaller variants-->
+                    <source media="(max-width: 600px)" type="image/avif" srcset="{% getUrl "/assets/images/bryan_vandusen_cropped.jpg" | resize({ width: 600 }) | avif %}">
+                    <source media="(max-width: 600px)" type="image/webp" srcset="{% getUrl "/assets/images/bryan_vandusen_cropped.jpg" | resize({ width: 600 }) | webp %}">
+                    <!--Tablet and above-->
+                    <source media="(min-width: 601px)" type="image/avif" srcset="{% getUrl "/assets/images/bryan_vandusen_cropped.jpg" | resize({ width: 1000 }) | avif %}">
+                    <source media="(min-width: 601px)" type="image/webp" srcset="{% getUrl "/assets/images/bryan_vandusen_cropped.jpg" | resize({ width: 1000 }) | webp %}">
+                    <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/bryan_vandusen_cropped.jpg" | resize({ width: 1000 }) | jpeg %}" alt="Bryan Van Dusen" width="1000" height="1245">
                 </picture>
                 <!--Pink Blob
                 <img class="cs-graphic1" loading="lazy" decoding="async" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images%2FGraphics%2Fpink-blob.svg" alt="pink graphic" width="441" height="478">-->
@@ -191,25 +193,25 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
             <ul class="cs-card-group">
                 <li class="cs-item">
                     <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/publisher_1.png" />
-                        <source media="(min-width: 601px)" srcset="/assets/images/publisher_1.png" />
-                        <img aria-hidden="true" loading="lazy" decoding="async" src="/assets/images/publisher_1.png" alt="real estate" width="320" height="90" />
+                        <!--Flat-colour logo: PNG beats AVIF/WebP here (17K vs 33K/35K),
+                            so no lossy sources — just the resized PNG.-->
+                        <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_1.png" | resize({ height: 400 }) | png %}" alt="The Collective Book Studio" width="708" height="400" />
                     </picture>
-                    
+
                 </li>
                 <li class="cs-item">
                     <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/publisher_2.png" />
-                        <source media="(min-width: 601px)" srcset="/assets/images/publisher_2.png" />
-                        <img aria-hidden="true" loading="lazy" decoding="async" src="/assets/images/publisher_2.png" alt="real estate" width="320" height="90" />
+                        <source type="image/avif" srcset="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | avif %}" />
+                        <source type="image/webp" srcset="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | webp %}" />
+                        <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | png %}" alt="Simon &amp; Schuster Children's Publishing" width="511" height="400" />
                     </picture>
-                    
+
                 </li>
                 <li class="cs-item">
                     <picture class="cs-picture">
-                        <source media="(max-width: 600px)" srcset="/assets/images/publisher_3_trim.png" />
-                        <source media="(min-width: 601px)" srcset="/assets/images/publisher_3_trim.png" />
-                        <img aria-hidden="true" loading="lazy" decoding="async" src="/assets/images/publisher_3_trim.png" alt="real estate" width="320" height="90" />
+                        <source type="image/avif" srcset="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | avif %}" />
+                        <source type="image/webp" srcset="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | webp %}" />
+                        <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | png %}" alt="Tiny Torch Books" width="400" height="400" />
                     </picture>
                     
                 </li>

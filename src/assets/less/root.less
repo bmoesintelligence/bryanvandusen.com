@@ -63,7 +63,7 @@
 		position: fixed;
 		inset: 0;
 		z-index: -1;
-		background: url("/assets/images/book_texture.jpg") center center / cover no-repeat;
+		background: url("/assets/images/book_texture.webp") center center / cover no-repeat;
 		/* faint grain over the cream (matches the old per-section wash) */
 		opacity: 0.15;
 		pointer-events: none;
@@ -96,11 +96,14 @@
 		height: auto;
 		/* spread the color outward (feMorphology dilate) with only a hair of softening.
 		   Tune in #cs-spread (base.html): radius = how much it grows, stdDeviation = softness. */
-		filter: url(#cs-spread);
+		/* Native blur, NOT an SVG filter. Safari clips `filter: url()` output to the
+		   element's box (ignoring the filter region), which squared off the blobs;
+		   native blur is handled correctly everywhere and has no square kernel.
+		   Scales with the blobs since it's in `em`. */
+		filter: blur(0.7em);
 		opacity: 0.6;
 		/* GPU-composited morph: only transform animates, so it's cheap */
 		transform-origin: center;
-		will-change: transform;
 	}
 
 	/* Scattered down the page. Each SVG has its own abstract spiky path (base.html);
@@ -127,15 +130,15 @@
 
 	/* Shrink all blobs on tablet & phone (desktop ≥64rem keeps font-size: 1rem).
 	   No "only screen" here so LESS merges cleanly with the outer media query. */
+	/* The blur is in `em`, so it scales with these font-sizes automatically — no
+	   per-breakpoint filter swaps needed any more. */
 	@media (max-width: 63.9375rem) {
 		.cs-blobs { font-size: 0.72rem; } /* tablet ≈ 72% */
-		/* smaller dilate radius to match the smaller blobs → less square-off;
-		   bump opacity since the lighter dilate makes them read fainter */
-		.cs-blob { filter: url(#cs-spread-md); opacity: 0.72; }
+		.cs-blob { opacity: 0.72; }
 	}
 	@media (max-width: 47.9375rem) {
 		.cs-blobs { font-size: 0.5rem; }  /* phone ≈ 50% */
-		.cs-blob { filter: url(#cs-spread-sm); opacity: 0.85; }
+		.cs-blob { opacity: 0.85; }
 	}
 
 	/* Three morph flavors — slow rotate + non-uniform scale = lazy squash/stretch.
@@ -807,7 +810,10 @@
 		/* prevents padding and border from affecting height and width */
 		box-sizing: border-box;
 		padding: 0 (16/16rem);
-		background-color: var(--primary);
+		/* No background: the nav isn't sticky, so it can blend straight into the page —
+		   the paper texture + blobs flow through it and it reads as the top of the hero
+		   (matching the comp). An opaque cream here would paint over the texture layer. */
+		background-color: transparent;
 		//box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		//position: fixed;
 		z-index: 10000;
