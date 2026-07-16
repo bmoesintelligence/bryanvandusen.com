@@ -6,7 +6,7 @@
 
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
-    #sbs-677 {
+    #about {
         /* horizontal padding so the stacked text/image clear the screen edges
            (like the hero); bottom keeps space before the next section */
         padding: 0 (16/16rem) 5rem;
@@ -213,7 +213,7 @@
             width: (562/16em);
             height: (725/16em);
             border-radius: (285/16em);
-            /* same drop shadow as the book cover placeholders (#reviews-353 .cs-image) */
+            /* same drop shadow as the book cover placeholders (#books .cs-image) */
             box-shadow: 0 (20/16rem) (38/16rem) rgba(61, 51, 39, 0.18);
             /* clips the image to match the border radius of the cs-picture */
             overflow: hidden;
@@ -268,7 +268,7 @@
 
 /* Small Desktop - 1024px */
 @media only screen and (min-width: 64rem) {
-    #sbs-677 {
+    #about {
         .cs-container {
             max-width: (1280/16rem);
             flex-direction: row;
@@ -300,7 +300,7 @@
 
 /* Large Desktop - 1900px */
 @media only screen and (min-width: 118.75rem) {
-    #sbs-677 {
+    #about {
         .cs-floater {
             width: (292/16rem);
             height: auto;
@@ -319,7 +319,7 @@
 
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
-    #reviews-353 {
+    #books {
         padding: var(--sectionPadding);
         position: relative;
         border-top: 1px dashed #DDD2B8;
@@ -517,7 +517,7 @@
 /* Desktop - 1024px — cards go side-by-side only once there's real room.
    Below this they stay full-width (one per row), keeping cover-left/text-right. */
 @media only screen and (min-width: 64rem) {
-    #reviews-353 {
+    #books {
         .cs-card-group {
             flex-direction: row;
             justify-content: space-between;
@@ -533,7 +533,7 @@
 
 /* Mobile - 360px */
 @media only screen and (min-width: 0rem) {
-    #contact-493 {
+    #contact {
         /* Centers button */
         text-align: center;
         padding: clamp(4rem, 25.95vw, 4rem) (16/16rem);
@@ -652,6 +652,11 @@
 
         .title-accent2 {
             color: var(--headerColor);
+            /* This is an <a> (mailto), and root.less has a global `p, li, a { font-size: 1rem }`
+               that would shrink it to 16px. Inherit the .cs-topper size instead. */
+            font-size: inherit;
+            line-height: inherit;
+            font-family: inherit;
             text-decoration: underline;
             //text-decoration-thickness: 2px;
             text-underline-offset: 7px;

@@ -878,33 +878,62 @@
 			line-height: 1.5em;
 			text-decoration: none;
 			margin: 0;
-			color: #4E4B66;
+			color: var(--bodyTextColor);
 			display: block;
 			position: relative;
-			&:hover {
-				&:before {
-					width: 100%;
-				}
-			}
+			/* fade the printed label out as the handwritten twin fades in */
+			transition: color 0.25s ease;
 
-			&.cs-active {
-				&:before {
-					width: 100%;
-				}
-			}
-
-			&:before {
-				/* active state underline */
-				content: "";
-				width: 0%;
-				height: 2px;
-				background: var(--primary);
-				opacity: 1;
-				display: block;
+			/* Handwritten twin (content comes from the link's data-label).
+			   It's absolutely positioned on purpose: font-family can't be animated and
+			   Caveat's metrics differ wildly from Quicksand, so laying it out inline
+			   would snap + reflow the whole nav on hover. Cross-fading two layers keeps
+			   the link's width fixed and the swap smooth. */
+			&:after {
+				content: attr(data-label);
+				font-family: 'Caveat', cursive;
+				/* Caveat runs small per em — bump it to match the printed label */
+				font-size: 1.6em;
+				font-weight: 600;
+				letter-spacing: 0;
+				line-height: 1;
+				color: var(--handWrittenInk);
+				white-space: nowrap;
 				position: absolute;
-				bottom: (0/16rem);
-				left: 0;
-				transition: width 0.3s;
+				top: 50%;
+				left: 50%;
+				opacity: 0;
+				/* rests slightly low and over-tilted, then springs up into a hand-placed
+				   angle — reads as "scribbled in" rather than just faded in.
+				   NB: translate(-50%,-50%) must stay in every state (transform replaces,
+				   it doesn't accumulate) or the twin loses its centring. */
+				transform: translate(-50%, -50%) translateY(0.3rem) rotate(-9deg);
+				transition:
+					opacity 0.25s ease,
+					transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+				pointer-events: none;
+			}
+
+			&:hover {
+				/* the printed label fades out as the handwritten twin fades in */
+				color: transparent;
+
+				&:after {
+					opacity: 1;
+					transform: translate(-50%, -50%) translateY(0) rotate(-4deg);
+				}
+			}
+
+			/* Reduced motion: keep the fade + resting tilt, drop the spring/drift */
+			@media (prefers-reduced-motion: reduce) {
+				&:after {
+					transform: translate(-50%, -50%) rotate(-4deg);
+					transition: opacity 0.25s ease;
+				}
+
+				&:hover:after {
+					transform: translate(-50%, -50%) rotate(-4deg);
+				}
 			}
 		}
 

@@ -18,18 +18,20 @@
             <!-- We need a wrapper div so we can set a fixed height on the cs-ul in case the nav list gets too long from too many dropdowns being opened and needs to have an overflow scroll. This wrapper acts as the background so it can go the full height of the screen and not cut off any overflowing nav items while the cs-ul stops short of the bottom of the screen, which keeps all nav items in view no matter how mnay there are-->
             <div class="cs-ul-wrapper" id="cs-ul-wrapper">
                 <ul class="cs-ul">
+                    <!-- data-label = the handwritten (Caveat) twin that cross-fades in on
+                         hover. See .cs-li-link:after in root.less. -->
                     <li class="cs-li">
-                        <a href="#sbs-677" class="cs-li-link">
+                        <a href="#about" class="cs-li-link" data-label="About">
                             About
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="#reviews-353" class="cs-li-link">
+                        <a href="#books" class="cs-li-link" data-label="Books">
                             Books
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="#contact-493" class="cs-li-link">
+                        <a href="#contact" class="cs-li-link" data-label="Contact">
                             Contact
                         </a>
                     </li>
