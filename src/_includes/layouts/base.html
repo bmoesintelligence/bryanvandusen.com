@@ -16,8 +16,8 @@
         <meta property="og:description" content="{{ description }}"/>
         <meta property="og:type" content="website"/>
         <meta property="og:url" content="{{ client.domain }}{{ page.url }}"/>
-        <meta property="og:image" content="{{ image or "/assets/images/logo-small.png" }}"/>
-        <meta property="og:image:secure_url" content="{{ image or "/assets/images/logo-small.png" }}"/>
+        <meta property="og:image" content="{{ client.domain }}{{ image or "/assets/images/og-image.jpg" }}"/>
+        <meta property="og:image:secure_url" content="{{ client.domain }}{{ image or "/assets/images/og-image.jpg" }}"/>
 
         <!--Favicons-->
         <link rel="icon" type="image/svg+xml" href="/assets/favicons/icon-C-washes.svg"/>

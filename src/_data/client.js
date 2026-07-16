@@ -1,22 +1,13 @@
 module.exports = {
-    name: "Bryan Vandusen",
+    name: "Bryan Van Dusen",
+    // TODO: placeholder — swap in the real address before launch
     email: "vandusenbryan@gmail.com",
-    phoneForTel: "555-779-4407",
-    phoneFormatted: "(555) 779-4407",
-    address: {
-        lineOne: "First Address Line",
-        lineTwo: "Second Address Line",
-        city: "Denver",
-        state: "CO",
-        zip: "80206",
-        country: "US",
-        mapLink: "https://maps.app.goo.gl/TEdS5KoLC9ZcULuQ6",
-    },
     socials: {
-        facebook: "https://www.facebook.com/",
         instagram: "https://www.instagram.com/bryanvandusenauthor/",
     },
     //! Make sure you include the file protocol (e.g. https://) and that NO TRAILING SLASH is included
+    //! TODO: update once the custom domain is pointed at Netlify (this drives the
+    //! canonical tag, og:url and the sitemap URL in robots.txt)
     domain: "https://www.bryanvandusen.com",
     // Passing the isProduction variable for use in HTML templates
     isProduction: process.env.ELEVENTY_ENV === "PROD",
