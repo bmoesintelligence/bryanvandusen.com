@@ -88,7 +88,7 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
                     Bryan grew up in a corner of the world where the woods did most of the talking — long afternoons under tall trees, conversations with creatures who didn't seem to mind the company, and a slow, steady habit of paying attention.
                 </p>
                 <p class="cs-text">
-                    Now he writes picture books for children who are figuring out who they are, and for the grown-ups who love them. His stories are soft, sturdy places where being different is the whole point, and every reader is invited to feel completely, unmistakably seen.
+                    Now he writes picture books for children figuring out who they are and for the grown-ups who love them fiercely. His stories celebrate belonging, bravery, glitter, imagination, cardboard castles, and the radical notion that there is more than one right way to be a kid.
                 </p>
                 <!--
                 <div class="cs-contact-group">
@@ -130,8 +130,13 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
             </div>
             <ul class="cs-card-group">
                 <li class="cs-item">
-                    <!-- Book cover placeholder (drop a real cover <img> in here later) -->
-                    <div class="cs-image" aria-hidden="true"></div>
+                    <div class="cs-image">
+                        <picture>
+                            <source type="image/avif" srcset="{% getUrl "/assets/images/bvd_skysgotglitter.jpg" | resize({ width: 400 }) | avif %}">
+                            <source type="image/webp" srcset="{% getUrl "/assets/images/bvd_skysgotglitter.jpg" | resize({ width: 400 }) | webp %}">
+                            <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/bvd_skysgotglitter.jpg" | resize({ width: 400 }) | jpeg %}" alt="Cover of Sky's Got Glitter" width="400" height="400">
+                        </picture>
+                    </div>
                     <div class="cs-flex-group">
                         <span class="cs-name">Sky's Got Glitter</span>
                         <span class="cs-job">Ages 4&ndash;8 &middot; October 2027</span>
@@ -142,13 +147,18 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
                     </div>
                 </li>
                 <li class="cs-item">
-                    <!-- Book cover placeholder (drop a real cover <img> in here later) -->
-                    <div class="cs-image" aria-hidden="true"></div>
+                    <div class="cs-image">
+                        <picture>
+                            <source type="image/avif" srcset="{% getUrl "/assets/images/bvd_cardboardcastle.png" | resize({ width: 400 }) | avif %}">
+                            <source type="image/webp" srcset="{% getUrl "/assets/images/bvd_cardboardcastle.png" | resize({ width: 400 }) | webp %}">
+                            <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/bvd_cardboardcastle.png" | resize({ width: 400 }) | jpeg %}" alt="Cover of The Cardboard Castle" width="400" height="400">
+                        </picture>
+                    </div>
                     <div class="cs-flex-group">
                         <span class="cs-name">The Cardboard Castle</span>
                         <span class="cs-job">Ages 4&ndash;8 &middot; Date TBA</span>
                         <p class="cs-review">
-                            An imaginative picture book about a child who turns a cardboard box into grand adventures, and discovers the wonder they were chasing was theirs all along.
+                            Where the ordinary becomes extraordinary, The Cardboard Castle reminds us that the best dreams are the ones we never outgrow.
                         </p>
                         <span class="cs-topper2">- imagination, but make it portable</span>
                     </div>

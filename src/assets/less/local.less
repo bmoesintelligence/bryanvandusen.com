@@ -321,6 +321,9 @@
 @media only screen and (min-width: 0rem) {
     #books {
         padding: var(--sectionPadding);
+        /* lead-in matches #contact's top padding (4rem) instead of the taller
+           --sectionPadding top (up to 100px), so the two sections open the same. */
+        padding-top: 4rem;
         position: relative;
         border-top: 1px dashed #DDD2B8;
         border-bottom: 1px dashed #DDD2B8;
@@ -384,13 +387,14 @@
             position: relative;
         }
 
-        /* Book cover — tilted pastel-gradient placeholder with a "coming soon" badge.
-           Drop a real <img> inside .cs-image and the gradient + label auto-hide. */
+        /* Book cover — square (matches the 1:1 picture-book covers), tilted, with a
+           "coming soon" badge for the still-forthcoming titles. An <img> inside covers
+           the pastel gradient and hides the ":empty" placeholder label. */
         .cs-image {
             flex: none;
             /* 104px (small phones) - 200px, so the text column keeps room */
             width: clamp(6.5rem, 26vw, 12.5rem);
-            aspect-ratio: 3 / 4;
+            aspect-ratio: 1 / 1;
             border-radius: (8/16rem);
             box-shadow: 0 (20/16rem) (38/16rem) rgba(61, 51, 39, 0.18);
             position: relative;
@@ -423,8 +427,8 @@
                 border-radius: 999px;
                 white-space: nowrap;
                 position: absolute;
-                top: (-14/16rem);
-                right: (-14/16rem);
+                top: (-20/16rem);
+                right: (-20/16rem);
                 transform: rotate(-6deg);
                 box-shadow: 0 (6/16rem) (14/16rem) rgba(61, 51, 39, 0.18);
                 z-index: 2;

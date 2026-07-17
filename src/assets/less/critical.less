@@ -180,8 +180,11 @@
 
         .cs-button-solid {
             font-family: 'Caveat', Arial, sans-serif;
-            /* 20px (mobile) - 28px (desktop); matches the floating note text */
-            font-size: var(--topperFontSize);
+            /* Locked to the floating note text (.cs-note text) so the three handwritten
+               bits read as one set: ~20px mobile → 27px tablet → 28px desktop. The
+               tablet/64rem blocks below bump both together. (Was var(--topperFontSize),
+               which caps at 24px and is shared with the section toppers.) */
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             /* 46px - 56px */
             line-height: clamp(2.875rem, 5.5vw, 3.5rem);
             text-decoration: none;
@@ -287,8 +290,10 @@
     #hero-493 {
         padding: clamp(3rem, 25.95vw, 3rem) (16/16rem);
         
-        .cs-note text {
-            font-size: 1.7rem; /* ~24px */
+        /* keep reading + both notes share one size so they read as a set */
+        .cs-note text,
+        .cs-button-solid {
+            font-size: 1.7rem; /* ~27px */
         }
 
         .cs-note-left {
@@ -317,7 +322,8 @@
     #hero-493 {
          padding: clamp(3rem, 25.95vw, 3rem) (16/16rem);
         
-        .cs-note text {
+        .cs-note text,
+        .cs-button-solid {
             font-size: 1.75rem; /* 28px */
         }
 

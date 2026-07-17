@@ -167,12 +167,16 @@ with no explicit `font-family`, it lands on Libre Caslon; set the family deliber
       The kit shipped it as `LocalBusiness` (wrong for an author) and commented out. **Interpolate
       with `| dump | safe`, never bare `{{ }}`** — JSON-LD is raw text inside `<script>`, so
       Nunjucks' autoescaped `&#39;` does *not* get decoded and consumers read it literally.
-- [ ] **Book title conflict — needs a decision.** His bio says the books are *Sky's Got Glitter*
-      and ***A Wish for a Weed***, but the Books section still says ***The Cardboard Castle***.
-      Its card copy ("turns a cardboard box into grand adventures") is written for the Castle
-      concept, so renaming needs new description + badge copy too. **Book entries are deliberately
-      left out of the schema until this settles.**
-- [ ] **Real book cover art** — currently CSS gradient placeholders with a "coming soon!" badge.
+- [x] **Book titles settled** — the real cover art arrived for both *Sky's Got Glitter* and
+      *The Cardboard Castle* (the latter's cover has "Bryan Van Dusen" on it), confirming the
+      Books-section titles. *A Wish for a Weed* from the external bio was the stale reference.
+      **Book entries are still left out of the schema** (no ISBN/publisher/pub-date yet — Date TBA
+      for Castle), but the title conflict itself is resolved.
+- [x] **Real book cover art** — `bvd_skysgotglitter.jpg` / `bvd_cardboardcastle.png`, square 1:1
+      covers wired into the two `#books` cards via `getUrl` (400px avif/webp/jpeg). The cover frame
+      is now `aspect-ratio: 1/1` (was 3/4) to match the square art; `object-fit: cover` on a square
+      image into a square box crops nothing. The "coming soon!" badge stays (both titles forthcoming:
+      Oct 2027 / TBA) — it's the `.cs-image:before`, not gated on `:empty`.
 - [x] **Email** — settled on `hello@bryanvandusen.com`; `client.js` is the single source of truth
       and the Contact mailto + schema both read from it.
 - [ ] **`hello@` mailbox must exist before launch** — the address is on the page, so contact mail
