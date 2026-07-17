@@ -23,14 +23,18 @@
 		--accentColorBlue: #A8C5D6;
 		--accentColorGreen: #B5C5A4;
 		--accentColorRose: #E0B5B0;
-		--accentColorDeepRose: #C08680;
+		/* Nudged from #C08680 (2.57:1 on cream — failed WCAG) to 3.18:1 — the lightest
+		   rose that still clears AA for the large italic display accents, keeping the
+		   soft look. Used as emphasis text + badge/button bg. */
+		--accentColorDeepRose: #B0756E;
 		--handWrittenInk: #5D7D92;
 
 		/* 13px - 16px */
 		//font-size: (28/16rem);
 		--topperFontSize: clamp(1.35rem, 2.6vw, 1.5rem);
-		/* 31px - 49px */
-		--headerFontSize: clamp(1.8rem, 3.9vw, 3.0625rem);
+		/* 26px - 49px (mobile floor lowered from 28.8px so the longer About heading
+		   keeps "among forests, animals," together on ~360px phones; desktop unchanged) */
+		--headerFontSize: clamp(1.65rem, 3.9vw, 3.0625rem);
 		--bodyFontSize: clamp(1rem, 2.6vw, 1.1rem);
 		/* 60px - 100px top and bottom */
 		--sectionPadding: clamp(3.75rem, 7.82vw, 6.25rem) 1rem;
@@ -127,6 +131,9 @@
 	.cs-blob-11 { width: 12em; top: 64%; right: -3%; fill: var(--accentColorRose);  animation: cs-morph-a 22s ease-in-out -14s infinite; }
 	.cs-blob-6  { width: 18em; top: 88%; right: -5%; fill: var(--accentColorBlue);  animation: cs-morph-c 23s ease-in-out -15s infinite; }
 	.cs-blob-12 { width: 11em; top: 82%; left: 8%;   fill: var(--accentColorBlue);  animation: cs-morph-b 20s ease-in-out -7s  infinite; }
+	/* green in the Contact section, right side — sits between the rose (blob-11, 64%)
+	   and blue (blob-6, 88%) and fills the bottom half's lack of green */
+	.cs-blob-13 { width: 13em; top: 76%; right: 7%; fill: var(--accentColorGreen); animation: cs-morph-a 24s ease-in-out -11s infinite; }
 
 	/* Shrink all blobs on tablet & phone (desktop ≥64rem keeps font-size: 1rem).
 	   No "only screen" here so LESS merges cleanly with the outer media query. */

@@ -540,9 +540,9 @@
     #contact {
         /* Centers button */
         text-align: center;
+        /* symmetric 4rem top & bottom — matches #faq-2490 and the section's own top
+           (was a 150px bottom override that dwarfed the other sections) */
         padding: clamp(4rem, 25.95vw, 4rem) (16/16rem);
-        /* 56px on phones - 150px on desktop */
-        padding-bottom: clamp(3.5rem, 12vw, 9.375rem);
         /* prevents the topper line from causing an overflow */
         overflow: hidden;
         position: relative;
@@ -623,6 +623,7 @@
             /* prevents padding from adding to the width */
             box-sizing: border-box;
             background-color: var(--headerColor);
+            transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 
             .cs-button-icon {
                 width: (20/16rem);
@@ -630,28 +631,24 @@
                 display: block;
             }
 
-            /*
-            &:before {
-                content: "";
-                position: absolute;
-                height: 100%;
-                width: 0%;
-                background: #000;
-                opacity: 1;
-                top: 0;
-                left: 0;
-                z-index: -1;
-                border-radius: (4/16rem);
-                transition: width 0.3s;
-            }
-                
-
+            /* warm shift to the deep-rose accent + a gentle lift, matching the
+               publisher-card hover */
             &:hover {
-                &:before {
-                    width: 100%;
-                }
+                background-color: var(--accentColorDeepRose);
+                transform: translateY(-2px);
+                box-shadow: 0 (8/16rem) (20/16rem) rgba(61, 51, 39, 0.22);
             }
-                */
+
+            /* press-down on click */
+            &:active {
+                transform: translateY(0);
+                box-shadow: 0 (3/16rem) (8/16rem) rgba(61, 51, 39, 0.2);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--accentColorDeepRose);
+                outline-offset: 3px;
+            }
         }
 
         .title-accent2 {
@@ -770,15 +767,43 @@
 		}
 
 		.cs-item {
-			padding: clamp(2rem, 3vw, 2.25rem);
 			//background-color: #fff;
 			border: 1px solid #DDD2B8;
             border-radius: (8/16rem);
 			display: flex;
 			flex-direction: column;
 			grid-column: span 12;
-			gap: (32/16rem);
-            background-color: #f9f4e7
+            background-color: #f9f4e7;
+			/* clip the link's focus/hover surface to the rounded corners */
+			overflow: hidden;
+			/* phone: keep the stacked cards contained + centered, not full-bleed.
+			   width:100% + max-width + auto margins centers within the grid column
+			   (justify-self:center would collapse the card to content width). Reset
+			   at 600px where they go three-across. */
+			width: 100%;
+			max-width: (240/16rem);
+			margin-inline: auto;
+			transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+			&:hover {
+				border-color: var(--accentColorDeepRose);
+				box-shadow: 0 (10/16rem) (24/16rem) rgba(61, 51, 39, 0.12);
+				transform: translateY(-2px);
+			}
+		}
+
+		/* Whole card is the link: padding lives here (moved off .cs-item) so the
+		   entire card surface — not just the logo — is clickable. */
+		.cs-item-link {
+			display: flex;
+			width: 100%;
+			padding: clamp(2rem, 3vw, 2.25rem);
+			text-decoration: none;
+
+			&:focus-visible {
+				outline: 2px solid var(--accentColorDeepRose);
+				outline-offset: 2px;
+			}
 		}
 
 		.cs-h3 {
@@ -839,7 +864,8 @@
 
 		.cs-picture {
 			width: 100%;
-			height: (160/16rem);
+			/* ~104px on phones → 160px on tablet/desktop, so stacked logos aren't huge */
+			height: clamp(6.5rem, 20vw, 10rem);
 			display: block;
 			position: relative;
 
@@ -857,20 +883,13 @@
 	}
 }
 
-/* Tablet - 600px */
+/* Tablet - 600px and up: all three logos stay in one shrinking row (never 2-then-1).
+   Reset the phone containment so they fill their grid columns again. */
 @media only screen and (min-width: 600px) {
 	#faq-2490 {
 		.cs-item {
-			grid-column: span 6;
-		}
-	}
-}
-
-/* Desktop - 1024px */
-@media only screen and (min-width: 64rem) {
-	#faq-2490 {
-		.cs-item {
 			grid-column: span 4;
+			max-width: none;
 		}
 	}
 }

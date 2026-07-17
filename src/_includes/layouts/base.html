@@ -26,9 +26,14 @@
         <link rel="apple-touch-icon" href="/assets/favicons/icon-C-washes.png"/>
         <meta name="apple-mobile-web-app-title" content="Bryan Van Dusen"/>
         <link rel="manifest" href="/assets/favicons/site.webmanifest"/>
+        <!-- tints the mobile browser chrome to match the cream canvas -->
+        <meta name="theme-color" content="#F4ECDC"/>
 
-        <!-- Preloads: the two faces the hero paints with (wordmark/title serif + topper/CTA hand) -->
+        <!-- Preloads: the faces the hero paints with above the fold — title serif +
+             its italic accent ("brave"), the Quicksand topper, and the Caveat hand. -->
         <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/libre-caslon-text-v5-latin-regular.woff2" crossorigin>
+        <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/libre-caslon-text-v5-latin-italic.woff2" crossorigin>
+        <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/quicksand-v37-latin-regular.woff2" crossorigin>
         <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/caveat-v23-latin-700.woff2" crossorigin>
 
         <!-- Sitewide Stylesheets and Scripts -->
@@ -60,6 +65,7 @@
                 <svg class="cs-blob cs-blob-10" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M24,-50C29,-39,30,-28,41,-17C52,-6,73,5,76,18C79,31,64,46,49,58C34,70,17,79,-2,82C-21,85,-42,82,-52,68C-62,54,-61,29,-60,8C-59,-13,-58,-30,-49,-44C-40,-58,-23,-69,-6,-66C11,-63,19,-61,24,-50Z"/></svg>
                 <svg class="cs-blob cs-blob-11" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M22,-55C30,-44,55,-48,66,-32C77,-16,73,9,76,28C79,47,92,60,78,68C64,76,40,58,24,64C8,70,0,92,-19,87C-38,82,-30,55,-44,46C-58,37,-84,44,-82,22C-80,0,-52,-4,-52,-22C-52,-40,-74,-58,-58,-68C-42,-78,-22,-54,-3,-58C9,-60,14,-66,22,-55Z"/></svg>
                 <svg class="cs-blob cs-blob-12" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M26,-52C33,-40,37,-30,49,-19C61,-8,81,4,82,17C83,30,65,44,49,57C33,70,17,82,-2,85C-21,88,-42,82,-50,67C-58,52,-53,28,-56,7C-59,-14,-70,-33,-64,-48C-58,-63,-35,-74,-15,-71C5,-68,19,-64,26,-52Z"/></svg>
+                <svg class="cs-blob cs-blob-13" viewBox="0 0 200 200"><path transform="translate(100 100)" d="M24,-50C29,-39,30,-28,41,-17C52,-6,73,5,76,18C79,31,64,46,49,58C34,70,17,79,-2,82C-21,85,-42,82,-52,68C-62,54,-61,29,-60,8C-59,-13,-58,-30,-49,-44C-40,-58,-23,-69,-6,-66C11,-63,19,-61,24,-50Z"/></svg>
             </div>
             {% block body %}{% endblock %}
         </main>

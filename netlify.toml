@@ -10,3 +10,15 @@ package = "netlify-plugin-cache"
     "public/assets/images", # Processed images - adjust to match your outputDir
     ".cache" # Remote Assets
   ]
+
+# Security headers applied to every response. (No Content-Security-Policy: the
+# deferred-CSS trick uses an inline onload handler, which a strict script-src
+# would block — revisit with a hash/nonce if a CSP is added later.)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), browsing-topics=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"

@@ -203,28 +203,31 @@ tags: "sitemap" # content/content.json will make sure that all pages in content/
         <div class="cs-wrapper">
             <ul class="cs-card-group">
                 <li class="cs-item">
-                    <picture class="cs-picture">
-                        <!--Flat-colour logo: PNG beats AVIF/WebP here (17K vs 33K/35K),
-                            so no lossy sources — just the resized PNG.-->
-                        <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_1.png" | resize({ height: 400 }) | png %}" alt="The Collective Book Studio" width="708" height="400" />
-                    </picture>
-
+                    <a class="cs-item-link" href="https://thecollectivebook.studio/" target="_blank" rel="noopener">
+                        <picture class="cs-picture">
+                            <!--Flat-colour logo: PNG beats AVIF/WebP here (17K vs 33K/35K),
+                                so no lossy sources — just the resized PNG.-->
+                            <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_1.png" | resize({ height: 400 }) | png %}" alt="The Collective Book Studio" width="708" height="400" />
+                        </picture>
+                    </a>
                 </li>
                 <li class="cs-item">
-                    <picture class="cs-picture">
-                        <source type="image/avif" srcset="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | avif %}" />
-                        <source type="image/webp" srcset="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | webp %}" />
-                        <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | png %}" alt="Simon &amp; Schuster Children's Publishing" width="511" height="400" />
-                    </picture>
-
+                    <a class="cs-item-link" href="https://www.simonandschuster.com/p/kids" target="_blank" rel="noopener">
+                        <picture class="cs-picture">
+                            <source type="image/avif" srcset="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | avif %}" />
+                            <source type="image/webp" srcset="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | webp %}" />
+                            <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_2.png" | resize({ height: 400 }) | png %}" alt="Simon &amp; Schuster Children's Publishing" width="511" height="400" />
+                        </picture>
+                    </a>
                 </li>
                 <li class="cs-item">
-                    <picture class="cs-picture">
-                        <source type="image/avif" srcset="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | avif %}" />
-                        <source type="image/webp" srcset="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | webp %}" />
-                        <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | png %}" alt="Tiny Torch Books" width="400" height="400" />
-                    </picture>
-                    
+                    <a class="cs-item-link" href="https://tinytorchbooks.com/" target="_blank" rel="noopener">
+                        <picture class="cs-picture">
+                            <source type="image/avif" srcset="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | avif %}" />
+                            <source type="image/webp" srcset="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | webp %}" />
+                            <img loading="lazy" decoding="async" src="{% getUrl "/assets/images/publisher_3_trim.png" | resize({ height: 400 }) | png %}" alt="Tiny Torch Books" width="400" height="400" />
+                        </picture>
+                    </a>
                 </li>
             </ul>
         </div>

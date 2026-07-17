@@ -1,0 +1,37 @@
+---
+title: "Page Not Found | Bryan Van Dusen"
+description: "That page seems to have wandered off. Head back to the beginning."
+permalink: "/404.html"
+eleventyExcludeFromCollections: true
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <!-- Reuses the hero (critical) styles for an on-brand not-found page -->
+    <link rel="stylesheet" href="/assets/css/critical.css"/>
+    {% if client.isProduction %}
+        <link rel="preload" href="/assets/css/local.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="/assets/css/local.css">
+        </noscript>
+    {% else %}
+        <link rel="stylesheet" href="/assets/css/local.css"/>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <section id="hero-493">
+        <div class="cs-container">
+            <div class="cs-content">
+                <span class="cs-topper">page not found</span>
+                <h1 class="cs-title">This page<br><span class="title-accent">wandered off.</span></h1>
+                <p class="cs-text">
+                    Even the best stories take a wrong turn now and then.<br>
+                    Let's get you back to the beginning.
+                </p>
+                <a href="/" class="cs-button-solid">back home</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
