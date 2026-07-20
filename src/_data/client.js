@@ -4,7 +4,7 @@ module.exports = {
     // forwarder on the domain once DNS is pointed, or contact mail bounces.
     email: "hello@bryanvandusen.com",
     socials: {
-        instagram: "https://www.instagram.com/bryanvandusenauthor/",
+        instagram: "https://www.instagram.com/bryanvandusen",
     },
     //! Make sure you include the file protocol (e.g. https://) and that NO TRAILING SLASH is included
     //! TODO: update once the custom domain is pointed at Netlify (this drives the
