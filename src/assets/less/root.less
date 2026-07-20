@@ -505,14 +505,22 @@
 		padding: (12/16rem) (16/16rem);
 		background-color: var(--primary);
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+		transition: box-shadow 0.3s;
+		/* NOT fixed (deliberately not sticky — the header scrolls away), but it must be
+		   positioned so its z-index:10000 takes effect and it establishes a stacking
+		   context. Otherwise the mobile dropdown (.cs-ul-wrapper, z-index:-1) resolves
+		   against the root and hides *behind the hero* when opened. */
 		//position: fixed;
+		position: relative;
 		z-index: 10000;
 
 		&:before {
 			content: "";
 			width: 100%;
 			height: 0vh;
-			background: rgba(0, 0, 0, 0.6);
+			/* warm brown wash (--headerColor #3D3327) rather than a cold black — the blur
+			   reads as dimmed paper, not a generic modal scrim. */
+			background: rgba(61, 51, 39, 0.55);
 			opacity: 0;
 			display: block;
 			position: absolute;
@@ -525,6 +533,10 @@
 		}
 
 		&.cs-active {
+			/* drop the header's drop shadow while open — otherwise it casts down
+			   onto the open panel and reads as a seam. */
+			box-shadow: none;
+
 			&:before {
 				height: 150vh;
 				opacity: 1;
@@ -665,7 +677,8 @@
 			height: auto;
 			padding-bottom: (48/20em);
 			background-color: var(--primary);
-			box-shadow: inset rgba(0, 0, 0, 0.2) 0px 8px 24px;
+			/* no inset shadow — it darkened the top of the panel into a fake "seam"
+			   under the header. Panel reads as one clean sheet of cream paper. */
 			opacity: 0;
 			position: absolute;
 			top: 100%;
@@ -687,7 +700,7 @@
 			flex-direction: column;
 			justify-content: flex-start;
 			align-items: center;
-			gap: (20/16rem);
+			gap: (22/16rem);
 			overflow: scroll;
 		}
 
@@ -697,9 +710,10 @@
 			width: 100%;
 			margin-right: 0;
 			opacity: 0;
-			/* transition from these values */
-			transform: translateY(-4.375rem);
-			transition: transform 0.6s, opacity 0.9s;
+			/* springs up and settles (overshoot easing) so each item reads
+			   "placed by hand" rather than mechanically dropped */
+			transform: translateY(-2.25rem);
+			transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
 
 			&:nth-of-type(1) {
 				transition-delay: 0.05s;
@@ -743,33 +757,131 @@
 		}
 
 		.cs-li-link {
-			/* 16px - 24px */
-			font-family: 'Quicksand', Arial, sans-serif;
-			font-size: clamp(1rem, 2.5vw, 1.5rem);
-			line-height: 1.2em;
+			/* Handwritten menu links — the "resolved" form of the desktop nav's
+			   hover twin (Caveat, teal ink). Caveat runs small per em, so it's
+			   sized up generously. */
+			font-family: 'Caveat', cursive;
+			/* 28px - 36px */
+			font-size: clamp(1.75rem, 7vw, 2.25rem);
+			font-weight: 600;
+			line-height: 1em;
+			letter-spacing: 0;
 			text-decoration: none;
 			margin: 0;
-			color: var(--headerColor);
+			color: var(--handWrittenInk);
 			display: inline-block;
 			position: relative;
+			/* each link sits at a slightly hand-placed angle (alternated below) */
+			transform: rotate(-3deg);
+			transition: color 0.2s ease;
 
+			/* pressed / current page: warm deep rose */
+			&:active,
+			&.cs-active {
+				color: var(--accentColorDeepRose);
+			}
+		}
+
+		/* alternate the tilt so the stack reads hand-placed, not mechanical */
+		.cs-li:nth-of-type(even) .cs-li-link {
+			transform: rotate(2.5deg);
+		}
+
+		/* ---- Mobile-only menu footer: follow button + email ---- */
+		/* mirrors the Contact section: dark pill Instagram button + a Caveat
+		   "or write to <email>" line (reusing the global .cs-topper). */
+		.cs-menu-footer {
+			width: 100%;
+			margin-top: (34/16rem);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			gap: (14/16rem);
+			/* fades up with the panel, a beat after the last link */
+			opacity: 0;
+			transform: translateY(-1rem);
+			transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+			transition-delay: 0.3s;
+
+			/* short centred divider — same dashed style as the page (Books/publisher
+			   dividers use 1px dashed #DDD2B8) */
 			&:before {
-				/* active state underline */
 				content: "";
-				width: 100%;
-				height: 1px;
-				background: currentColor;
-				opacity: 1;
-				display: none;
-				position: absolute;
-				bottom: (-2/16rem);
-				left: 0;
+				width: (80/16rem);
+				height: 0;
+				border-top: 1px dashed #DDD2B8;
+				margin-bottom: (22/16rem);
 			}
 
-			&.cs-active {
-				&:before {
-					display: block;
-				}
+			/* .cs-topper defaults to the section-header size (~22-24px) + a bottom
+			   margin — too big for a compact footer, so shrink it and drop the margin
+			   (the whole "or write to <email>" line, address included, inherits this) */
+			.cs-topper {
+				/* 15px - 18px */
+				font-size: clamp(0.95rem, 4.2vw, 1.125rem);
+				margin-bottom: 0;
+			}
+		}
+
+		.cs-menu-button {
+			font-family: 'Quicksand', Arial, sans-serif;
+			font-size: (13/16rem);
+			line-height: (40/16rem);
+			text-decoration: none;
+			text-align: center;
+			color: #fff;
+			min-width: (130/16rem);
+			padding: 0 (24/16rem);
+			border-radius: (28/16rem);
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: (8/16rem);
+			box-sizing: border-box;
+			background-color: var(--headerColor);
+			transition: background-color 0.25s ease, transform 0.25s ease;
+
+			.cs-menu-button-icon {
+				width: (17/16rem);
+				height: auto;
+				display: block;
+			}
+
+			/* press-down + warm to the deep-rose accent (touch has no hover) */
+			&:active {
+				background-color: var(--accentColorDeepRose);
+				transform: translateY(1px);
+			}
+
+			&:focus-visible {
+				outline: 2px solid var(--accentColorDeepRose);
+				outline-offset: 3px;
+			}
+		}
+
+		.cs-menu-email-link {
+			/* matches Contact's .title-accent2 — inherits the topper's Caveat size
+			   (dodging the global a{font-size:1rem}), brown + offset underline */
+			color: var(--headerColor);
+			font-size: inherit;
+			line-height: inherit;
+			font-family: inherit;
+			text-decoration: underline;
+			text-underline-offset: 7px;
+		}
+
+		&.cs-active .cs-menu-footer {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		/* Reduced motion: keep the fades, drop the spring/drift */
+		@media (prefers-reduced-motion: reduce) {
+			.cs-li,
+			.cs-menu-footer {
+				transform: none;
+				transition: opacity 0.3s ease;
 			}
 		}
 
@@ -798,6 +910,11 @@
 		//box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		//position: fixed;
 		z-index: 10000;
+
+		/* mobile-only menu footer — hidden once the nav goes inline */
+		.cs-menu-footer {
+			display: none;
+		}
 
 		.cs-container {
 			width: 100%;
