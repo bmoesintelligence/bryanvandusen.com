@@ -14,6 +14,10 @@ module.exports = {
     // Google shows you). Renders a <meta name="google-site-verification"> in the head
     // only when set; leave empty to omit the tag entirely.
     googleSiteVerification: "K8natDxJkGOI77BhBmAQm2RLCmeM4lBs0AHgXs5jvho",
+    // Google Analytics 4 Measurement ID (e.g. "G-XXXXXXXXXX"). Loads the gtag.js
+    // snippet in the head, but ONLY in production builds and ONLY when set — so local
+    // `npm start` dev traffic is never counted. Leave empty to omit analytics entirely.
+    googleAnalyticsId: "G-H8HVK38TYQ",
     // Passing the isProduction variable for use in HTML templates
     isProduction: process.env.ELEVENTY_ENV === "PROD",
 };

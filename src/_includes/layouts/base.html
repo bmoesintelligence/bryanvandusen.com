@@ -42,6 +42,17 @@
         <script defer src="/assets/js/nav.js"></script>
         <script defer src="/assets/js/smooth-scroll.js"></script>
 
+        {% if client.isProduction and client.googleAnalyticsId %}
+        <!-- Google Analytics 4 (gtag.js) — production builds only, see client.js -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ client.googleAnalyticsId }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ client.googleAnalyticsId }}');
+        </script>
+        {% endif %}
+
         {% block head %}{% endblock %}
 
         <title>{{ title }}</title>
