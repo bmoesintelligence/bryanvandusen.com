@@ -10,6 +10,7 @@
         <meta name="description" content="{{ description }}">
         <link rel="canonical" href="{{ client.domain }}{{ page.url }}">
         <meta name="generator" content="{{ eleventy.generator }}">
+        {% if client.googleSiteVerification %}<meta name="google-site-verification" content="{{ client.googleSiteVerification }}">{% endif %}
 
         <!--Social Media Display-->
         <meta property="og:title" content="{{ title }}"/>
