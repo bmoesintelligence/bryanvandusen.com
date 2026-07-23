@@ -575,6 +575,8 @@
 			font-size: clamp(1rem, 4vw, 1.25rem);
 			line-height: 1.2em;
 			color: var(--headerColor);
+			/* it's an <a href="/"> now — kill the default link underline */
+			text-decoration: none;
 
 			img {
 				width: 100%;
@@ -940,7 +942,8 @@
 			z-index: 100;
 			font-family: 'Libre Caslon Text', Arial, sans-serif;
 			font-size: 20px;
-			color: var(--headerColor)
+			color: var(--headerColor);
+			text-decoration: none;
 		}
 
 		.cs-logo-subtitle {

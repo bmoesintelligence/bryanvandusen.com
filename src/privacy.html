@@ -1,0 +1,80 @@
+---
+title: "Privacy Policy | Bryan Van Dusen"
+description: "How bryanvandusen.com handles cookies, analytics, and the information collected when you visit."
+permalink: "/privacy/"
+tags: "sitemap"
+---
+
+{% extends "layouts/base.html" %}
+
+{% block head %}
+    <!-- Reuses the site's below-the-fold styles for the legal page -->
+    <link rel="stylesheet" href="/assets/css/critical.css"/>
+    {% if client.isProduction %}
+        <link rel="preload" href="/assets/css/local.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="/assets/css/local.css">
+        </noscript>
+    {% else %}
+        <link rel="stylesheet" href="/assets/css/local.css"/>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <section id="legal">
+        <div class="cs-container">
+            <span class="cs-topper">~ the fine print ~</span>
+            <h1 class="cs-title">Privacy Policy</h1>
+            <p class="cs-updated">Last updated July 23, 2026</p>
+
+            <p class="cs-text">
+                This is the personal website of Bryan Van Dusen, a children's picture-book author. It exists to share news about his books and to make it easy to get in touch. This page explains, in plain language, what information the site collects when you visit and how it is used.
+            </p>
+
+            <h2 class="cs-legal-heading">Information collected automatically</h2>
+            <p class="cs-text">
+                Like most websites, this site uses <strong>Google Analytics</strong> to understand how visitors find and use it. When you visit, Google Analytics collects standard, non-identifying information such as the pages you view, roughly how long you stay, the type of device and browser you use, and an approximate location based on your IP address. This helps us see which books and pages people are interested in, so the site can be improved over time.
+            </p>
+            <p class="cs-text">
+                This information is processed by Google on our behalf. You can read how Google handles it in the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">how Google uses data from sites that use its services</a>.
+            </p>
+
+            <h2 class="cs-legal-heading">Cookies</h2>
+            <p class="cs-text">
+                Google Analytics sets small text files called cookies in your browser to tell returning visits apart from new ones. These cookies do not identify you by name and are used only to compile anonymous, aggregate statistics. You can block or delete cookies at any time in your browser settings, and the site will still work normally.
+            </p>
+
+            <h2 class="cs-legal-heading">Information you choose to share</h2>
+            <p class="cs-text">
+                This site has no contact forms and does not ask you to create an account. If you email <a class="title-accent2" href="mailto:{{ client.email }}">{{ client.email }}</a>, your message and email address are used only to reply to you. They are not added to any mailing list or shared with anyone else.
+            </p>
+
+            <h2 class="cs-legal-heading">How your information is used</h2>
+            <p class="cs-text">
+                The limited information described above is used only to understand site traffic and to respond to messages you send. It is never sold, rented, or traded. It is not used for advertising.
+            </p>
+
+            <h2 class="cs-legal-heading">Your choices</h2>
+            <p class="cs-text">
+                You can opt out of analytics in a few ways: adjust or clear cookies in your browser, use your browser's private or "Do Not Track" mode, or install Google's official <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Analytics opt-out browser add-on</a>, which stops Google Analytics from collecting data on any site you visit.
+            </p>
+
+            <h2 class="cs-legal-heading">Children's privacy</h2>
+            <p class="cs-text">
+                Although the books are written for young readers, this website is intended for grown-ups (parents, guardians, teachers, and other book lovers). It is not directed at children, and it does not knowingly collect personal information from children under 13.
+            </p>
+
+            <h2 class="cs-legal-heading">Changes to this policy</h2>
+            <p class="cs-text">
+                This policy may be updated from time to time as the site grows. When it changes, the "last updated" date at the top of this page will change with it.
+            </p>
+
+            <h2 class="cs-legal-heading">Contact</h2>
+            <p class="cs-text">
+                Questions about this policy are welcome. Write to <a class="title-accent2" href="mailto:{{ client.email }}">{{ client.email }}</a> and we will be glad to help.
+            </p>
+
+            <p class="cs-back"><a href="/">&larr; back to the beginning</a></p>
+        </div>
+    </section>
+{% endblock %}

@@ -39,6 +39,15 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.on("eleventy.after", javascript);
 	eleventyConfig.on("eleventy.after", less);
 
+	/*
+	 * Watch the LESS/JS sources so `npm start` recompiles + live-reloads on save.
+	 * Without these, editing a .less/.js file does nothing in the running dev
+	 * server (they aren't template files, so Eleventy wouldn't otherwise watch
+	 * them) — the actual compile still happens in the eleventy.after events above.
+	 */
+	eleventyConfig.addWatchTarget("./src/assets/less/");
+	eleventyConfig.addWatchTarget("./src/assets/js/");
+
 	// ═════════════════════════════════════════════════════════════════════════
 	// PLUGINS
 	// Extend Eleventy with additional functionality
